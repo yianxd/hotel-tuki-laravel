@@ -68,7 +68,7 @@ class CustomerController extends Controller
         ]);
 
 
-        return redirect()->route('customer.index');
+        return redirect()->route('login');
 
     }
 
