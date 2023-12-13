@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('customers',function (Blueprint $table){
             $table->id();
             $table->foreignId('id_user');
-            $table->date('registration_date');
+            $table->string('registration_date');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
