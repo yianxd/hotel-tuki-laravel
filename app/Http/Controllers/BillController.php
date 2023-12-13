@@ -5,82 +5,71 @@ namespace App\Http\Controllers;
 use App\Models\Bill;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Customer;
+use App\Models\Detail_bill;
 
 class BillController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $facturas = Bill::all();
+        return view('bill.index', compact('facturas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function show($id)
+    {
+        $bill = Bill::with('customer')->findOrFail($id);
+        //return view('facturas.show', compact('factura'));
+    }
+
     public function create()
     {
-        //
+        $clientes = Customer::all();
+        return view('bill.create', compact('clientes'));
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $bill=new Bill;
+        $bill->id_customer=$request->input('id_customer');
+        $bill->tax_percentage=$request->input('tax_percentage');
+        $bill->discount=$request->input('discount');
+        $bill->total=$request->input('total');
+        $bill->save();
+        return redirect()->route('bill.index');
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Bill  $bill
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Bill $bill)
+    public function edit($id)
     {
-        //
+        $factura = Factura::with('cliente')->findOrFail($id);
+        $clientes = Cliente::all();
+        //return view('facturas.edit', compact('factura', 'clientes', 'reservas'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Bill  $bill
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Bill $bill)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id_cliente' => 'required|exists:clientes,id',
+            'fecha_factura' => 'required|date',
+            'porcent_impuesto' => 'required|numeric',
+            'descuento' => 'required|numeric',
+            'total' => 'required|numeric',
+            'id_reserva' => 'nullable|exists:reservas,id',
+        ]);
+
+        $factura = Factura::findOrFail($id);
+        $factura->update($request->all());
+
+        //return redirect()->route('facturas.index')->with('success', 'Factura actualizada exitosamente');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bill  $bill
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Bill $bill)
+    public function destroy($id)
     {
-        //
-    }
+        $factura = Factura::findOrFail($id);
+        $factura->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Bill  $bill
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Bill $bill)
-    {
-        //
+        //return redirect()->route('facturas.index')->with('success', 'Factura eliminada exitosamente');
     }
 }
