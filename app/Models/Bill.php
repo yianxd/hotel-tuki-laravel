@@ -8,18 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Bill extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_cliente', 'fecha_factura', 'porcent_impuesto', 'descuento', 'total', 'id_reserva'];
+    protected $table = "bills";
 
-    // Relación con clientes
-    public function cliente()
-    {
-        return $this->belongsTo(Cliente::class, 'id_cliente');
-    }
+    protected $primaryKey='id';
 
-    // Relación con reservas
-    public function reserva()
-    {
-        return $this->belongsTo(Reserva::class, 'id_reserva');
-    }
+    protected $fillable = [
+        'id_customer',
+        'tax_percentage',
+        'discount', 
+        'total'];
+
+
 
 }
