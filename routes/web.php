@@ -17,11 +17,7 @@ use App\Http\Controllers\BillController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/',function(){return view('welcome');});
 Route::resource('/user', UserController::class);
 Route::resource('/customer',CustomerController::class);
 Route::resource('/employee',EmployeeController::class);
-Route::resource('/bill', BillController::class);
