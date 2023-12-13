@@ -21,12 +21,12 @@
                             <a href="#">Consultar Reservas</a>
                             <a href="{{ route('soport') }}">Soporte</a>
                         </menu>
-                    </nav> 
+                    </nav>
             @elseif (auth()->user()->id_rol==2)
                 <p>Room Service</p>
                     <nav>
                         <menu>
-                            <a href="#">Cargar Un Pedido</a>
+                            <a href="{{ route('bill.index') }}">gestiona factura</a>
                             <a href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
@@ -43,6 +43,10 @@
                 <p>Instructor</p>
                     <nav>
                         <menu>
+                            <a href="{{ route('products.index') }}">Gestionar Minibar</a>
+                            <a href="{{ route('room.index') }}">Gestionar Habitaciones</a>
+                            <a href="{{ route('service.index') }}">Gestionar Servicios</a>
+                            <a href="{{ route('employee.index') }}">Gestionar Empleados</a>
                             <a href="{{ route('employee.index') }}">Gestionar Empleados</a>
                             <a href="#">Gestionar Hoteles</a>
                             <a href="{{ route('soport') }}">Soporte</a>
@@ -59,7 +63,7 @@
             @else
             <p>Rol no encontrado</p>
             @endif
-        
+
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button>
@@ -77,7 +81,7 @@
                     </ol>
                 <nav>
             @endguest
-    
+
 </body>
 @yield('content')
 </html>
