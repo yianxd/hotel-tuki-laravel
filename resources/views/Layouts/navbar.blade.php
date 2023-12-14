@@ -9,10 +9,78 @@
 </head>
 <body>
     <main>
-        <h2>
-            Hotel tuki
-        </h2>
+        Talentos CIDE
     </main>
+    @auth
+        <p>Bienvenido{{ auth()->user()->name }}</p>
+            @if (auth()->user()->id_rol==1)
+                <p>Cliente</p>
+                    <nav>
+                        <menu>
+                            <a href="#">Hacer Una Reserva</a>
+                            <a href="#">Consultar Reservas</a>
+                            <a href="{{ route('soport') }}">Soporte</a>
+                        </menu>
+                    </nav>
+            @elseif (auth()->user()->id_rol==2)
+                <p>Room Service</p>
+                    <nav>
+                        <menu>
+                            <a href="{{ route('bill.index') }}">gestiona factura</a>
+                            <a href="{{ route('soport') }}">Soporte</a>
+                        </menu>
+                    </nav>
+            @elseif (auth()->user()->id_rol==3)
+                <p>Mesero</p>
+                    <nav>
+                        <menu>
+                            <a href="#">Cargar Un Pedido</a>
+                            <a href="#">Cancelar Pedido</a>
+                            <a href="{{ route('soport') }}">Soporte</a>
+                        </menu>
+                    </nav>
+            @elseif (auth()->user()->id_rol==4)
+                <p>Instructor</p>
+                    <nav>
+                        <menu>
+                            <a href="{{ route('products.index') }}">Gestionar Minibar</a>
+                            <a href="{{ route('room.index') }}">Gestionar Habitaciones</a>
+                            <a href="{{ route('service.index') }}">Gestionar Servicios</a>
+                            <a href="{{ route('employee.index') }}">Gestionar Empleados</a>
+                            <a href="{{ route('employee.index') }}">Gestionar Empleados</a>
+                            <a href="#">Gestionar Hoteles</a>
+                            <a href="{{ route('soport') }}">Soporte</a>
+                        </menu>
+                    </nav>
+            @elseif (auth()->user()->id_rol==5)
+                <p>Recepcionista</p>
+                    <nav>
+                        <menu>
+                            <a href="#">Gestionar Reserva</a>
+                            <a href="{{ route('soport') }}">Soporte</a>
+                        </menu>
+                    </nav>
+            @else
+            <p>Rol no encontrado</p>
+            @endif
+
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button>
+                Cerrar sesión
+            </button>
+        </form>
+        @endauth
+            @guest
+                <nav>
+                    <ol>
+                        <li><a href='{{route('login')}}'>Iniciar sesión</li>
+                        <li><a href='{{route('customer.create')}}'>Registrame</li>
+                        <li><a href='#'>Nuestra Misión</li>
+                        <li><a href='#'>Acerca de nosotros</li>
+                    </ol>
+                <nav>
+            @endguest
 
 </body>
 @yield('content')
