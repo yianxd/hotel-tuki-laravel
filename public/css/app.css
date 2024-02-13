@@ -1,0 +1,29 @@
+
+/*Narbar*/
+
+nav{
+    background-color: cadetblue;
+}
+.navbar a{
+
+    color: bisque;
+
+}
+.navbar a:hover{
+
+    color: rgb(151, 137, 120)
+
+}
+
+/*Formularios*/
+
+section .container{
+    background-color: cadetblue;
+    height: auto;
+    width: 40%;
+
+}
+
+.container h4{
+    margin-top: 10px;
+}

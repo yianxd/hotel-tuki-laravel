@@ -1,7 +1,8 @@
 @extends('layouts.navbar')
 
 @section('content')
-    <div class="container">
+<section>
+    <div class="container text-center mt-5 rounded">
         <h4>Registro</h4>
         <div class="row">
             <div class="col-xl-12">
@@ -40,9 +41,9 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Registro">
-                        <input type="reset" class="btn btn-danger" value="Cancelar">
-                        <a href="javascript:history.back()" class='btn btn-dark'>Volver</a>
+                        <input type="submit" class="btn btn-primary my-2 " value="Registro">
+                        <input type="reset" class="btn btn-danger my-2" value="Cancelar">
+                        <a href="javascript:history.back()" class='btn btn-dark my-2'>Volver</a>
                     </div>
 
                 </form>
@@ -50,4 +51,5 @@
 
         </div>
     </div>
+</section>
 @endsection

@@ -1,10 +1,13 @@
 @extends('layouts.navbar')
 
 @section('content')
-    <body>
-        <div class="container">
-            <h4>Inicio De Seccion</h4>
-            <div class="row">
+<head>
+    <!--<link rel="stylesheet" href="{{ asset('css/login') }}">-->
+</head>
+<Section>
+        <div class="container text-center mt-5 rounded">
+            <h4>Inicio De Sesion</h4>
+            <div class="row text-center">
                 <div class="col-xl-12">
                     <form action="{{ route('login') }}" method="POST" novalidate>
                         @csrf
@@ -13,7 +16,7 @@
                         @endif
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="control" name="email" id="" placeholder="Email" value="{{ old('email') }}">
+                            <input type="email" class="form-control" name="email" id="" placeholder="Email" value="{{ old('email') }}">
                         </div>
                         @error('email')
                             <h6>{{ $message }}</h6>
@@ -25,7 +28,8 @@
                         @error('password')
                         <h6>{{ $message }}</h6>
                         @enderror
-                        <input type="submit" name="login" value="Login">
+                        <input class="btn btn-primary my-2" type="submit" name="login" value="Login">
                     </form>
-                </div>      
+                </div>
+</Section>
 @endsection

@@ -5,29 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> @yield('title','Hotel Tuki...se libero el tuki')</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <main>
-        Talentos CIDE
-    </main>
     @auth
         <p>Bienvenido{{ auth()->user()->name }}</p>
             @if (auth()->user()->id_rol==1)
                 <p>Cliente</p>
-                    <nav>
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
                         <menu>
-                            <a href="#">Hacer Una Reserva</a>
-                            <a href="#">Consultar Reservas</a>
-                            <a href="{{ route('soport') }}">Soporte</a>
+                            <a class="navbar-brand" href="#">Hacer Una Reserva</a>
+                            <a class="navbar-brand" href="#">Consultar Reservas</a>
+                            <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
             @elseif (auth()->user()->id_rol==2)
                 <p>Room Service</p>
                     <nav>
                         <menu>
-                            <a href="{{ route('bill.index') }}">gestiona factura</a>
-                            <a href="{{ route('soport') }}">Soporte</a>
+                            <a class="navbar-brand" href="{{ route('bill.index') }}">gestiona factura</a>
+                            <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
             @elseif (auth()->user()->id_rol==3)
@@ -41,15 +39,15 @@
                     </nav>
             @elseif (auth()->user()->id_rol==4)
                 <p>Instructor</p>
-                    <nav>
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
                         <menu>
-                            <a href="{{ route('products.index') }}">Gestionar Minibar</a>
-                            <a href="{{ route('room.index') }}">Gestionar Habitaciones</a>
-                            <a href="{{ route('service.index') }}">Gestionar Servicios</a>
-                            <a href="{{ route('employee.index') }}">Gestionar Empleados</a>
-                            <a href="{{ route('employee.index') }}">Gestionar Empleados</a>
-                            <a href="#">Gestionar Hoteles</a>
-                            <a href="{{ route('soport') }}">Soporte</a>
+                            <a class="navbar-brand" href="{{ route('products.index') }}">Gestionar Minibar</a>
+                            <a class="navbar-brand" href="{{ route('room.index') }}">Gestionar Habitaciones</a>
+                            <a class="navbar-brand" href="{{ route('service.index') }}">Gestionar Servicios</a>
+                            <a class="navbar-brand" href="{{ route('employee.index') }}">Gestionar Empleados</a>
+                            <a class="navbar-brand" href="{{ route('employee.index') }}">Gestionar Empleados</a>
+                            <a class="navbar-brand" href="#">Gestionar Hoteles</a>
+                            <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
             @elseif (auth()->user()->id_rol==5)
@@ -72,14 +70,30 @@
         </form>
         @endauth
             @guest
-                <nav>
+                <nav class="navbar navbar-expand-lg bg-body-tertiary" >
                     <ol>
-                        <li><a href='{{route('login')}}'>Iniciar sesión</li>
-                        <li><a href='{{route('customer.create')}}'>Registrame</li>
-                        <li><a href='#'>Nuestra Misión</li>
-                        <li><a href='#'>Acerca de nosotros</li>
+                        <div class="container-fluid">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li>
+                                <a class="navbar-brand" href='/'>Home</a>
+                            </li>
+                            <li>
+                                <a class="navbar-brand" href='#'>Nuestra Misión</a>
+                            </li>
+                            <li>
+                                <a class="navbar-brand" href='#'>Acerca de nosotros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="navbar-brand"  href='{{route('login')}}'>Iniciar sesión</a>
+                            </li>
+                            <li>
+                                <a class="navbar-brand" href='{{route('customer.create')}}'>Registrar</a>
+                            </li>
+                        </ul>
+
+                        </div>
                     </ol>
-                <nav>
+                </nav>
             @endguest
 
 </body>

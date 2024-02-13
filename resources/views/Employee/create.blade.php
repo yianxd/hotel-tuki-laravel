@@ -39,7 +39,7 @@
                         <input type="text" name="rol" id="" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="addres">Correo</label>
+                        <label for="addres">Direccion</label>
                         <input type="addres" class="form-control" name="addres" >
                     </div>
                     <div class="form-group">

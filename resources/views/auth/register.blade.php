@@ -1,17 +1,16 @@
 @extends('layouts.navbar')
 
 @section('content')
-
-<body>
+<Section>
    <form action="{{ route('user.store') }}" method="post">
     @csrf
-    
+
     @if (session('mensaje'))
-        <h6>{{ session('mensaje') }}</h6>   
+        <h6>{{ session('mensaje') }}</h6>
     @endif
-    <div class="container">
+    <div class="container text-center mt-5 rounded">
         <h4>Registro</h4>
-        <div class="row">
+        <div class="row text-center">
             <div class="col-xl-12">
                 <form action="{{route('customer.store')}}" method="post">
                     @csrf
@@ -56,9 +55,6 @@
             </div>
 
         </div>
-    </div> 
-</body>
-
+    </div>
+</Section>
 @endsection
-
-</html>
