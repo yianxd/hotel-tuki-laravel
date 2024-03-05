@@ -9,8 +9,9 @@
 </head>
 <body>
     <main>
-        Talentos CIDE
+        Hola
     </main>
+    <!--
     @auth
         <p>Bienvenido{{ auth()->user()->name }}</p>
             @if (auth()->user()->id_rol==1)
@@ -21,7 +22,7 @@
                             <a href="#">Consultar Reservas</a>
                             <a href="{{ route('soport') }}">Soporte</a>
                         </menu>
-                    </nav> 
+                    </nav>
             @elseif (auth()->user()->id_rol==2)
                 <p>Room Service</p>
                     <nav>
@@ -59,7 +60,7 @@
             @else
             <p>Rol no encontrado</p>
             @endif
-        
+
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button>
@@ -70,14 +71,15 @@
             @guest
                 <nav>
                     <ol>
-                        <li><a href='{{route('login')}}'>Iniciar sesión</li>
-                        <li><a href='{{route('customer.create')}}'>Registrame</li>
+                        <li><a href='/'>Iniciar sesión</li>
+                        <li><a href='/'>Registrame</li>
                         <li><a href='#'>Nuestra Misión</li>
                         <li><a href='#'>Acerca de nosotros</li>
                     </ol>
                 <nav>
             @endguest
-    
+                -->
+
 </body>
 @yield('content')
 </html>
