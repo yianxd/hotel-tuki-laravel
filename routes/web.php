@@ -37,4 +37,4 @@ Route::post('logout', [LogoutController::class,'store'])->name('logout');
 Route::post('login', [LoginController::class,'store']);
 Route::get('/home', [HomeController::class,'index'])->name('home.index')->middleware('auth');
 Route::get('/soport',function(){return view('soport');})->name('soport');
-Route::post('/register', [UserController::class,'store'])->name('register');
+

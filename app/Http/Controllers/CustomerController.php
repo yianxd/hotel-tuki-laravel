@@ -55,17 +55,12 @@ class CustomerController extends Controller
         $customer = new User;
         $customer->id_rol = $request->input('type_user');
         $customer->name = $request->input('name');
+        $customer->document = $request->input('document');
         $customer->last_name = $request->input('last_name');
         $customer->email = $request->input('email');
-        $customer->user_name = $request->input('user_name');
         $customer->phone = $request->input('phone');
         $customer->password = Hash::make($request->input('password'));
         $customer->save();
-
-        Customer::create([
-            'id_user'=>User::latest('id')->first()->id,
-            'registration_date'=>$request->registration_date
-        ]);
 
 
         return redirect()->route('login');

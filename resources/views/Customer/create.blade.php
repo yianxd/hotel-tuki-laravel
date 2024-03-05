@@ -17,11 +17,11 @@
                         <input type="text" class="form-control" name="last_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="user_name">Nombre de usuario</label>
-                        <input type="text" class="form-control" name="user_name" placeholder="Ejemplo=persona123">
+                        <label for="user_name">Documento</label>
+                        <input type="number" class="form-control" name="document" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="type_user" id="" value="1" hidden>
+                        <input type="text" class="form-control" name="type_user" id="" value="5" hidden>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -34,10 +34,6 @@
                     <div class="form-group">
                         <label for="password">Contraseña</label>
                         <input type="password" class="form-control" name="password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="registration_date">Fecha de registro</label>
-                        <input type="date" class="form-control" name="registration_date" >
                     </div>
 
                     <div class="form-group">
