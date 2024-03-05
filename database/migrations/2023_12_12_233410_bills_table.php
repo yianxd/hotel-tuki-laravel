@@ -16,11 +16,11 @@ return new class extends Migration
         //
         Schema::create('bills',function(Blueprint $table){
             $table->id();
-            $table->foreignId('id_customer');
+            $table->foreignId('documento');
             $table->decimal('tax_percentage',$precision=20,$scale=2);
             $table->decimal('discount',$precision=20,$scale=2);
             $table->decimal('total',$precision=20,$scale=2);
-            $table->foreign('id_customer')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('documento')->references('documento')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 
         });
