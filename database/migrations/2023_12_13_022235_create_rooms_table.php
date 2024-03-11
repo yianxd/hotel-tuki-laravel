@@ -15,7 +15,7 @@ return new class extends Migration
     {
         //
         Schema::create('rooms',function(Blueprint $table){
-            $table->ulid('id_number')->primary();
+            $table->bigInteger('id_number')->unsigned()->primary();
             $table->foreignId('id_type');
             $table->integer('capacity');
             $table->integer('state');

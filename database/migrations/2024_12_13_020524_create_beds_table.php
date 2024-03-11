@@ -14,12 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('beds', function (Blueprint $table) {
+            $table->foreignId('id_number');
             $table->string('suite');
             $table->string('Doble');
             $table->string('Simple');
-            //$table->foreignId('id_number');
-            //$table->foreign('id_number')->references('id_number')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
+            $table->foreign('id_number')->references('id_number')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
