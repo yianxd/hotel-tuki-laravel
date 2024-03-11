@@ -12,6 +12,9 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\BookingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +29,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/',function(){return view('welcome');});
 Route::resource('/user', UserController::class);
-Route::resource('/customer',CustomerController::class);
-Route::resource('/employee',EmployeeController::class);
-Route::resource('/products',ProductsController::class);
 Route::resource('/service',ServiceController::class);
-Route::resource('/type_room',TypeRoomController::class);
-Route::resource('/room',RoomController::class);
 Route::get('login', [LoginController::class,'index'])->name('login');
 Route::post('logout', [LogoutController::class,'store'])->name('logout');
 Route::post('login', [LoginController::class,'store']);

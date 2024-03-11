@@ -5,7 +5,7 @@
         <h4>Actualizar</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{route('user.update',$user->id)}}" method="post">
+                <form action="{{route('user.update',$user->document)}}" method="post">
                     @csrf
                     @method('PUT')
                     @csrf
@@ -17,12 +17,16 @@
                         <label for="last_name">Apellido</label>
                         <input type="text" class="form-control" name="last_name" required value="{{$user->last_name}}">
                     </div>
+
                     <div class="form-group">
-                        <label for="user_name">Nombre de usuario</label>
-                        <input type="text" class="form-control" name="user_name" placeholder="Ejemplo=persona123" value="{{$user->user_name}}">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="type_user" id="" value="1" hidden>
+                        <label for="type_user">Tipo Usuario</label>
+                        <select name="type_user" class="form-select">
+                            <option name="type_user" value="1">Cliente</option>
+                            <option name="type_user" value="2">Administrador</option>
+                            <option name="type_user" value="3">Recepcionista</option>
+                            <option name="type_user" value="4">Mesero</option>
+                            <option name="type_user"value="5">Roomservice</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -34,8 +38,11 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" name="password" required value="{{$user->password}}">
+                            <input type="text" class="form-control" name="phone" value="{{$user->password}}">
+
+
                     </div>
+
 
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Actualizar">

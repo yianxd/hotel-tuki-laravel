@@ -1,7 +1,7 @@
 <!-- Modal -->
-  <div class="modal fade" id="modal-delete-{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modal-delete-{{$user->document}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{route('user.destroy',$user->id)}}" method="post">
+        <form action="{{route('user.destroy',$user->document)}}" method="post">
             @csrf
             @method('DELETE')
 
