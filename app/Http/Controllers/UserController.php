@@ -20,7 +20,7 @@ class UserController extends Controller
         //
         $texto=trim($request->get('texto'));
         $user=DB::table('users')
-                         ->select('id','name','last_name','phone','email','id_rol')
+                         ->select('','name','last_name','phone','email','id_rol')
                          ->where('last_name','LIKE','%'.$texto.'%')
                          ->orWhere('name','LIKE','%'.$texto.'%')
                          ->orWhere('id','Like','%'.$texto.'%')

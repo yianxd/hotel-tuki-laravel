@@ -16,10 +16,6 @@
                         <input type="text" class="form-control" name="last_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="user_name">Nombre de usuario</label>
-                        <input type="text" class="form-control" name="user_name" placeholder="Ejemplo=persona123">
-                    </div>
-                    <div class="form-group">
                         <label for="type_user">Tipo usuario</label>
                         <input type="text" class="form-control" name="type_user">
                     </div>
