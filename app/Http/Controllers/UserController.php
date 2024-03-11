@@ -79,8 +79,6 @@ class UserController extends Controller
             'password.required'=>'Obligatorio',
             'password.min'=>'Escriba minimo 2 caracter',
             'password.max'=>'Supera el limite de caracteres',
-            'password_confirm.required'=>'Campo obligatorio',
-            'password_confirm.same:password'=>'Los campos deben ser iguales'
         ]);
 
         $user =new User;
@@ -94,7 +92,7 @@ class UserController extends Controller
         $user->password=Hash::make($request->input('password'));
         $user->save();
 
-        return redirect()->route('user.index');
+        return redirect()->back();
 
     }
 

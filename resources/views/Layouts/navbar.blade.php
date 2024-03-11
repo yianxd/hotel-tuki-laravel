@@ -12,33 +12,7 @@
     @auth
         <p>Bienvenido{{ auth()->user()->name }}</p>
             @if (auth()->user()->id_rol==1)
-                <p>Cliente</p>
-                    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
-                        <menu>
-                            <a class="navbar-brand" href="#">Hacer Una Reserva</a>
-                            <a class="navbar-brand" href="#">Consultar Reservas</a>
-                            <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
-                        </menu>
-                    </nav>
-            @elseif (auth()->user()->id_rol==2)
-                <p>Room Service</p>
-                    <nav>
-                        <menu>
-                            <a class="navbar-brand" href="{{ route('bill.index') }}">gestiona factura</a>
-                            <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
-                        </menu>
-                    </nav>
-            @elseif (auth()->user()->id_rol==3)
-                <p>Mesero</p>
-                    <nav>
-                        <menu>
-                            <a href="#">Cargar Un Pedido</a>
-                            <a href="#">Cancelar Pedido</a>
-                            <a href="{{ route('soport') }}">Soporte</a>
-                        </menu>
-                    </nav>
-            @elseif (auth()->user()->id_rol==4)
-                <p>Instructor</p>
+                    <p>Instructor</p>
                     <nav class="navbar navbar-expand-lg bg-body-tertiary" >
                         <menu>
                             <a class="navbar-brand" href="{{ route('products.index') }}">Gestionar Minibar</a>
@@ -50,12 +24,38 @@
                             <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
-            @elseif (auth()->user()->id_rol==5)
+            @elseif (auth()->user()->id_rol==2)
                 <p>Recepcionista</p>
                     <nav>
                         <menu>
                             <a href="#">Gestionar Reserva</a>
                             <a href="{{ route('soport') }}">Soporte</a>
+                        </menu>
+                    </nav>
+            @elseif (auth()->user()->id_rol==3)
+                <p>Room Service</p>
+                    <nav>
+                        <menu>
+                            <a class="navbar-brand" href="{{ route('bill.index') }}">gestiona factura</a>
+                            <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
+                        </menu>
+                    </nav>
+            @elseif (auth()->user()->id_rol==4)
+                <p>Mesero</p>
+                    <nav>
+                        <menu>
+                            <a href="#">Cargar Un Pedido</a>
+                            <a href="#">Cancelar Pedido</a>
+                            <a href="{{ route('soport') }}">Soporte</a>
+                        </menu>
+                    </nav>
+            @elseif (auth()->user()->id_rol==5)
+                <p>Cliente</p>
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+                        <menu>
+                            <a class="navbar-brand" href="#">Hacer Una Reserva</a>
+                            <a class="navbar-brand" href="#">Consultar Reservas</a>
+                            <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
             @else
@@ -87,7 +87,7 @@
                                 <a class="navbar-brand"  href='{{route('login')}}'>Iniciar sesión</a>
                             </li>
                             <li>
-                                <a class="navbar-brand" href='{{route('customer.create')}}'>Registrar</a>
+                                <a class="navbar-brand" href='{{route('user.create')}}'>Registrar</a>
                             </li>
                         </ul>
 

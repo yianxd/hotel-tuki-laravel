@@ -6,7 +6,7 @@
         <h4>Registro</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{route('user.store')}}" method="POST">
+                <form action="{{route('user.create')}}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="typeDoc">Tipo de Documento</label>

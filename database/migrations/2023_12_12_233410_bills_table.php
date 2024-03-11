@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('tax_percentage',$precision=20,$scale=2);
             $table->decimal('discount',$precision=20,$scale=2);
             $table->decimal('total',$precision=20,$scale=2);
-            $table->foreign('id_customer')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
+       
             $table->timestamps();
 
         });

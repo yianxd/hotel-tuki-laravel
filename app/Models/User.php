@@ -21,8 +21,12 @@ class User extends Authenticatable
     protected $primaryKey='document';
 
     protected $fillable = [
+        'typeDoc',
+        'id_rol',
         'name',
+        'last_name',
         'email',
+        'phone',
         'password',
     ];
 
