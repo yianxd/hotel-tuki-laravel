@@ -29,7 +29,7 @@
                         <h6>{{ $message }}</h6>
                         @enderror
                         <input class="btn btn-primary my-2" type="submit" name="login" value="Login">
-                        <input class="btn btn-primary my-2" type="submit" name="loginAdmin" value="Logearse como empleado">
+                        <input class="btn btn-primary my-3" href='{{route('loginAdmin')}}' type="submit" name="loginAdmin" value="Logearse como empleado">
                     </form>
                 </div>
 </Section>
