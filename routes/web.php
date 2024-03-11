@@ -17,9 +17,5 @@ use App\Http\Controllers\RoomController;
 |
 */
 
-Route::get('/',function(){return view('welcome');});
-Route::resource('/user', UserController::class);
-Route::resource('/customer',CustomerController::class);
-Route::resource('/employee',EmployeeController::class);
 Route::resource('/room',RoomController::class);
 

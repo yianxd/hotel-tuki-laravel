@@ -5,7 +5,7 @@
         <h4>Registro</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{route('customer.store')}}" method="post">
+                <form action="{{ route('customer.store') }}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="name">Nombre</label>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="registration_date">Fecha de registro</label>
-                        <input type="date" class="form-control" name="registration_date" >
+                        <input type="date" class="form-control" name="registration_date">
                     </div>
 
                     <div class="form-group">
@@ -45,9 +45,17 @@
                         <a href="javascript:history.back()" class='btn btn-dark'>Volver</a>
                     </div>
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </form>
             </div>
-
         </div>
     </div>
 @endsection

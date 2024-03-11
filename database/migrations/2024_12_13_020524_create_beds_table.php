@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('beds',function(Blueprint $table){
-            $table->foreignUlid('id_room');
-            $table->tinyInteger('single_bed');
-            $table->tinyInteger('double_bed');
-            $table->tinyInteger('suite_bed');
-            $table->foreign('id_room')->references('id_number')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
+        Schema::create('beds', function (Blueprint $table) {
+            $table->string('suite');
+            $table->string('Doble');
+            $table->string('Simple');
+            //$table->foreignId('id_number');
+            //$table->foreign('id_number')->references('id_number')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 
@@ -30,7 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
         Schema::dropIfExists('beds');
     }
 };

@@ -6,7 +6,7 @@
     <h4>Habitacion</h4>
     <div class="row">
         <div class="col-xl-12">
-            <form action="{{ route('room.index')}}" method="get">
+            <form action="{{ route('room.index') }}" method="post">
                 <div class="form-row">
                     <div class="col-sm-3 my-1">
                         <input type="text" class="form-control" name="texto" value="{{$texto}}">
@@ -40,15 +40,15 @@
                         @else
                         @foreach ($rooms as $rooms)
                         <tr>
+                            <td>{{$rooms->id_number}}</td>
+                            <td>{{$rooms->id_type}}</td>
+                            <td>{{$rooms->capacity}}</td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$rooms->id_number}}">
                                     Eliminar
                                 </button> |
                                 <a href="{{route('room.edit',$rooms->id_number)}} " class="btn btn-warning btn-sm">Editar</a>
                             </td>
-                            <td>{{$rooms->id_number}}</td>
-                            <td>{{$rooms->id_type}}</td>
-                            <td>{{$rooms->capacity}}</td>
                         </tr>
                         @include('room.destroy')
                         @endforeach
@@ -60,8 +60,5 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-
-<h1>hola</h1>
 
 @endsection

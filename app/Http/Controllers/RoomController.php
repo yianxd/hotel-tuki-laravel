@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
-use App\Models\room;
+use App\Models\Room;
 
 
 class RoomController extends Controller
 {
     /**
-     * Display a listing of the resource.
+
+    * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +27,7 @@ class RoomController extends Controller
                          ->orWhere('id_type','LIKE','%'.$texto.'%')
                          ->orWhere('capacity','Like','%'.$texto.'%')
                          ->paginate(10);
-        return  view('Room.index',compact('room','texto'));
+        return  view('room.index',compact('rooms','texto'));
     }
 
     /**
@@ -47,12 +48,30 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $rooms = new User;
+        $request->validate([
+            'id_number' => 'required|numeric|min:100|max:999',
+            'id_type' => 'required|string|min:1',
+            'capacity' => 'required|string|min:1|max:5',
+        ],
+        [
+            'id_number.min' => 'El número de identificación debe tener al menos 3 dígitos.',
+            'id_number.max' => 'El número de identificación no puede tener más de 3 dígitos.',
+            'id_number.unique' => 'Ya existe una habitación con este número.',
+            'id_type.required' => 'Debe asociar el número de identificación con un tipo de habitación.',
+            'capacity.min' => 'La capacidad debe tener al menos 1 caracter.',
+            'capacity.max' => 'La capacidad no puede tener más de 5 caracteres.',
+        ]);
+
+        $rooms = new Room;
         $rooms->id_number = $request->input('id_number');
         $rooms->id_type = $request->input('id_type');
         $rooms->capacity = $request->input('capacity');
+        $rooms->state = $request->input('state');
         $rooms->save();
+        return redirect()->route('room.index');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -74,10 +93,11 @@ class RoomController extends Controller
      */
     public function edit($id_number)
     {
-        //
-        $rooms=room::finOrFail($id_number);
-        return view('room.edit',compact('room'));
-
+        $rooms = Room::findOrFail($id_number);
+        if(!$rooms) {
+            dd("No se encontró ninguna habitación con el ID proporcionado.");
+        }
+        return view('room.edit', compact('rooms'));
     }
 
     /**
@@ -90,7 +110,7 @@ class RoomController extends Controller
     public function update(Request $request, $id_number)
     {
         //
-        $customer = User::findOrFail($id);
+        $rooms = Room::findOrFail($id_number);
         $rooms->id_number = $request->input('id_number');
         $rooms->id_type = $request->input('id_type');
         $rooms->capacity = $request->input('capacity');
@@ -106,9 +126,8 @@ class RoomController extends Controller
      */
     public function destroy($id_number)
     {
-        //
-        $rooms=Customer::findOrFail($id_number);
+        $rooms = Room::findOrFail($id_number);
         $rooms->delete();
-        return redirect()->route('room.index');
+        return redirect()->route('room.index')->with('success', 'Habitación eliminada correctamente.');
     }
 }

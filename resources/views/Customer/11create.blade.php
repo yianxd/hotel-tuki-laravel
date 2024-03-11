@@ -1,14 +1,6 @@
 @extends('layouts.navbar')
 
 @section('content')
-
-<body>
-   <form action="{{ route('user.store') }}" method="post">
-    @csrf
-    
-    @if (session('mensaje'))
-        <h6>{{ session('mensaje') }}</h6>   
-    @endif
     <div class="container">
         <h4>Registro</h4>
         <div class="row">
@@ -46,6 +38,7 @@
                         <label for="registration_date">Fecha de registro</label>
                         <input type="date" class="form-control" name="registration_date" >
                     </div>
+
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Registro">
                         <input type="reset" class="btn btn-danger" value="Cancelar">
@@ -56,9 +49,5 @@
             </div>
 
         </div>
-    </div> 
-</body>
-
+    </div>
 @endsection
-
-</html>

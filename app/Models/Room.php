@@ -17,6 +17,6 @@ class Room extends Model
         'id_number',
         'id_type',
         'capacity',
-        'salary',
+        'state',
     ];
 }

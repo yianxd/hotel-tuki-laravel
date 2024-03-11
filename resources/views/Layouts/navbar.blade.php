@@ -8,10 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <main>
-        Hola
-    </main>
-    <!--
     @auth
         <p>Bienvenido{{ auth()->user()->name }}</p>
             @if (auth()->user()->id_rol==1)
@@ -78,7 +74,7 @@
                     </ol>
                 <nav>
             @endguest
-                -->
+
 
 </body>
 @yield('content')
