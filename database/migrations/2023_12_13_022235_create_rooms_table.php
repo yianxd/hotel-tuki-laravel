@@ -15,13 +15,11 @@ return new class extends Migration
     {
         //
         Schema::create('rooms',function(Blueprint $table){
-            $table->id();
-            $table->integer('number');
+            $table->ulid('id_number')->primary();
             $table->foreignId('id_type');
-            $table->decimal('fee',$precision=20,$scale=2);
             $table->integer('capacity');
-            $table->string('image');
-            $table->foreign('id_type')->references('id')->on('type_rooms')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('state');
+            $table->foreign('id_type')->references('id_type')->on('type_rooms')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
