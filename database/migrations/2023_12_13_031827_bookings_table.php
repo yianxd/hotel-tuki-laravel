@@ -16,13 +16,13 @@ return new class extends Migration
         //
         Schema::create('bookings',function(Blueprint $table){
             $table->id('id_booking');
+            $table->foreignId('document');
             $table->integer('amount_rooms');
-            $table->foreignId('documento');
+            $table->integer('amount_people');
             $table->date('date_start');
             $table->date('date_end');
-            $table->integer('adult');
-            $table->integer('kids');
-            $table->foreign('documento')->references('documento')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->float('price');
+            $table->foreign('document')->references('document')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

@@ -26,12 +26,14 @@
                     <thead>
                         <tr>
                             <th>Opciones</th>
+                            <th>Tipo de usuario</th>
+                            <th>Tipo Documento</th>
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Telefono</th>
                             <th>Email</th>
-                            <th>Tipo de usuario</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -43,17 +45,19 @@
                         @foreach ($user as $user)
                         <tr>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$user->id}}">
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$user->document}}">
                                     Eliminar
                                 </button> |
-                                <a href="{{route('user.edit',$user->id)}} " class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{{route('user.edit',$user->document)}} " class="btn btn-warning btn-sm">Editar</a>
                             </td>
-                            <td>{{$user->id}}</td>
+                            <td>{{$user->typeDoc}}</td>
+                            <td>{{$user->document}}</td>
+                            <td>{{$user->id_rol}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->last_name}}</td>
                             <td>{{$user->phone}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->id_rol}}</td>
+
                         </tr>
                         @include('user.destroy')
                         @endforeach

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->id('id_service');
             $table->string('name');
             $table->float('value');
+            $table->string('description');
+            $table->boolean('disponibility');
             $table->timestamps();
         });
     }

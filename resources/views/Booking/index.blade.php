@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="col-xl-12">
-    <form action="{{ route('service.index')}}" method="get">
+    <form action="{{ route('booking.index')}}" method="get">
         <div class="form-row">
             <div class="col-sm-3 my-1">
                 <input type="text" class="form-control" name="texto" value="{{$texto}}">
@@ -13,7 +13,7 @@
                   <input type="submit" class="btn btn-primary" value="Buscar">
             </div>
             <div class="col-auto my-1">
-                <a href="{{route('service.create')}}" class="btn btn-success">Nuevo servicio</a>
+                <a href="{{route('booking.create')}}" class="btn btn-success">Crear reserva</a>
             </div>
         </div>
     </form>
@@ -25,40 +25,37 @@
                 <tr>
 
                     <th>Opciones</th>
-                    <th>numero</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Detalles</th>
-                    <th>Disponibilidad</th>
+                    <th>Numero de Reserva</th>
+                    <th>Documento</th>
+                    <th>Numero de habitacion</th>
+                    <th>Cantidad de personas</th>
+                    <th>Fecha inicio</th>
+                    <th>Fecha final</th>
+                    <th>precio</th>
                 </tr>
             </thead>
             <tbody>
-                @if (count($service)<=0)
+                @if (count($booking)<=0)
                     <tr>
                         <td colspan="7">No hay resultados</td>
                     </tr>
                 @else
-                @foreach ($service as $service)
+                @foreach ($bookin as $booking)
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$service->id_service}}">
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$booking->id_booking}}">
                             Eliminar
                         </button> |
-                        <a href="{{route('service.edit',$service->id_service)}}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{route('booking.edit',$bookin->id_booking)}}" class="btn btn-warning btn-sm">Editar</a>
                     </td>
-                    <td>{{$service->id_service}}</td>
-                    <td>{{$service->name}}</td>
-                    <td>{{$service->value}}</td>
-                    <td>{{$service->description}}</td>
-                    <td>
-                        @if ($service->disponibility==1)
-                            disponible
-                        @else
-                            no disponible
-                        @endif
-
-                    </td>
-                @include('service.destroy')
+                    <td>{{$booking->id_booking}}</td>
+                    <td>{{$booking->document}}</td>
+                    <td>{{$booking->amount_rooms}}</td>
+                    <td>{{$booking->amount_people}}</td>
+                    <td>{{$booking->date_start}}</td>
+                    <td>{{$booking->date_end}}</td>
+                    <td>{{$booking->amount_price}}</td>
+                @include('booking.destroy')
                 </tr>
                 @endforeach
                 @endif

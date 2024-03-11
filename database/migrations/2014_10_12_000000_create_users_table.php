@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id("documento");
+            $table->string('typeDoc');
+            $table->id("document");
             $table->foreignId('id_rol');
             $table->string('name');
             $table->string('last_name');
