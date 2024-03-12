@@ -15,10 +15,11 @@ return new class extends Migration
     {
         //
         Schema::create('bills',function(Blueprint $table){
-            $table->id();
-            $table->decimal('tax_percentage',$precision=20,$scale=2);
-            $table->decimal('discount',$precision=20,$scale=2);
-            $table->decimal('total',$precision=20,$scale=2);
+            $table->id('id_bill');
+            $table->foreignId('id_booking');
+            $table->foreignID('document');
+            $table->date('date');
+            $table->float('total');
 
         });
     }

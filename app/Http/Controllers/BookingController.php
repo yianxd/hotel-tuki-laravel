@@ -19,7 +19,7 @@ class BookingController extends Controller
         //
         $texto=trim($request->get('texto'));
         $booking=DB::table('bookings')
-                    ->select('id','id_number','document','amount_people','date_start','date_end','price')
+                    ->select('id_booking','id_number','document','amount_people','date_start','date_end','price')
                     ->where('id','LIKE','%'.$texto.'%')
                     ->orWhere('id_number','LIKE','%'.$texto.'%')
                     ->orWhere('document','LIKE'.'%'.$texto.'%')
@@ -77,10 +77,10 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_booking)
     {
         //
-        $booking=Booking::findOrFail($id);
+        $booking=Booking::findOrFail($id_booking);
         return view('booking.edit',compact('booking'));
     }
 
@@ -91,7 +91,7 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_booking)
     {
         //
 
@@ -119,7 +119,7 @@ class BookingController extends Controller
         ]
     );
 
-        $booking =Booking::findOrFail($id);
+        $booking =Booking::findOrFail($id_booking);
         $booking->id_number=$request->input('id_number');
         $booking->amount_people=$request->input('amount_people');
         $booking->date_start=$request->input('date_start');
@@ -134,11 +134,11 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_booking)
     {
         //
 
-        $booking = Booking::findOrFail($id);
+        $booking = Booking::findOrFail($id_booking);
         $booking->delete();
         return redirect()->route('booking.index');
     }

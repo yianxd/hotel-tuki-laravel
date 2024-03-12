@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inventory', function (Blueprint $table) {
+        Schema::create('inventory_room', function (Blueprint $table) {
             $table->bigInteger('id_inventario')->unsigned()->primary();
             $table->foreignId('id_producto');
             $table->foreignId('id_number');

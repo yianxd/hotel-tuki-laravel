@@ -32,6 +32,7 @@ use App\Http\Controllers\BedsController;
 Route::get('/',function(){return view('welcome');});
 Route::resource('/user', UserController::class);
 Route::resource('/customer',CustomerController::class);
+Route::resource('/booking', BookingController::class);
 Route::resource('/service',ServiceController::class);
 Route::resource('/room',RoomController::class);
 Route::resource('/beds',BedsController::class);
@@ -56,8 +57,7 @@ Route::post('/register/user/store', [RegisterUsersController::class, 'store'])->
 
 Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
 Route::get('/bill/create', [BillController::class, 'create'])->name('bill.create');
-Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
-Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+
 
 
 

@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('details_bills',function(Blueprint $table){
-            $table->foreignId('id_bills');
+        Schema::create('services', function (Blueprint $table) {
+            $table->id('id_service');
+            $table->string('name');
             $table->float('value');
-            $table->foreign('id_bills')->references('id')->on('bills')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('description');
+            $table->boolean('disponibility');
+            $table->timestamps();
         });
     }
 
@@ -28,7 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
-        Schema::dropIfExists('details_bills');
+        Schema::dropIfExists('services');
     }
 };

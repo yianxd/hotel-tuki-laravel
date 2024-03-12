@@ -58,8 +58,6 @@
                     </table>
                 </div>
             </div>
-
-
             @error('amount_rooms')
                 <br>
                 <small style="color:red">{{$message}} </small>

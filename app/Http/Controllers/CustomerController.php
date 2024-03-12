@@ -15,7 +15,7 @@ class CustomerController extends Controller
 
     public function index(){
         $booking=DB::table('bookings')
-                    ->select('id','id_number','document','amount_people','date_start','date_end','price')
+                    ->select('id_booking','id_number','document','amount_people','date_start','date_end','price')
                     ->get();
         return view('customer.index',compact('booking'));
 
@@ -55,7 +55,6 @@ class CustomerController extends Controller
     public function destroy($id_booking)
     {
         //
-
         $booking = Booking::findOrFail($id_booking);
         $booking->delete();
         return redirect()->route('customer.index');
