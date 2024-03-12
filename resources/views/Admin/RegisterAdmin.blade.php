@@ -35,7 +35,7 @@
 
 
                         <div class="form-group">
-                            <input type="text" class="form-control" name="type_user" id="" value="5" hidden>
+                            <input type="text" class="form-control" name="type_user" id="" value="1" hidden>
                         </div>
 
 
@@ -117,10 +117,6 @@
                             <a href="javascript:history.back()" class='btn btn-dark my-2'>Volver</a>
                         </div>
 
-                    </form>
-                    <form action="{{ route('register.admin.create') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-link">Registrar Administrador</button>
                     </form>
             </div>
 

@@ -15,12 +15,9 @@
                     <p>Instructor</p>
                     <nav class="navbar navbar-expand-lg bg-body-tertiary" >
                         <menu>
-                            <a class="navbar-brand" href="{{ route('products.index') }}">Gestionar Minibar</a>
                             <a class="navbar-brand" href="{{ route('room.index') }}">Gestionar Habitaciones</a>
                             <a class="navbar-brand" href="{{ route('service.index') }}">Gestionar Servicios</a>
-                            <a class="navbar-brand" href="{{ route('employee.index') }}">Gestionar Empleados</a>
-                            <a class="navbar-brand" href="{{ route('employee.index') }}">Gestionar Empleados</a>
-                            <a class="navbar-brand" href="#">Gestionar Hoteles</a>
+                            <a class="navbar-brand" href="{{ route('register.user.create') }}">Gestionar Usuarios</a>
                             <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>

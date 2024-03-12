@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class RegisterUsersController extends Controller
 {
+    //
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +41,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('User.create');
+        return view('Admin.RegisterUsers');
     }
 
     /**
@@ -68,7 +70,7 @@ class UserController extends Controller
         $user->password=Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('login');
+        return redirect()->back();
 
     }
 

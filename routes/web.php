@@ -14,6 +14,9 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginadminController;
+use App\Http\Controllers\RegisterAdminController;
+use App\Http\Controllers\RegisterUsersController;
+
 
 
 
@@ -34,6 +37,15 @@ Route::resource('/service',ServiceController::class);
 Route::get('login', [LoginController::class,'index'])->name('login');
 Route::post('logout', [LogoutController::class,'store'])->name('logout');
 Route::post('login', [LoginController::class,'store']);
+Route::post('/register/admin', [RegisterAdminController::class, 'create'])->name('register.admin.create');
 Route::get('/home', [HomeController::class,'index'])->name('home.index')->middleware('auth');
 Route::get('/soport',function(){return view('soport');})->name('soport');
+Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
+Route::get('/room', [RoomController::class, 'index'])->name('room.index');
+Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
+Route::get('/register/user', [RegisterUsersController::class, 'create'])->name('register.user.create');
+Route::post('/register/user/store', [RegisterUsersController::class, 'store'])->name('register.user.store');
+Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
+Route::get('/bill/create', [BillController::class, 'create'])->name('bill.create');
+
 

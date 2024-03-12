@@ -4,11 +4,11 @@
 
 <section>
     <div class="container text-center mt-5 rounded">
-        <h4>Registro</h4>
+        <h4>Registro de nuevos usuarios</h4>
         <div class="row">
             <div class="col-xl-12">
 
-                    <form class="needs-validation" action="{{route('user.store')}}" method="POST" novalidate>
+                    <form class="needs-validation" action="{{route('register.user.store')}}" method="POST" novalidate>
                         @csrf
                         <div class="form-group">
                             <label for="typeDoc">Tipo de Documento</label>
@@ -35,7 +35,16 @@
 
 
                         <div class="form-group">
-                            <input type="text" class="form-control" name="type_user" id="" value="5" hidden>
+
+                            <label for="type_user">tipo de usuario</label>
+                            <input type="number" class="form-control" name="type_user" required>
+                            <div class="valid-feedback">
+                                Todo bien
+                            </div>
+                            <div class="invalid-feedback">
+                                Este campo es obligatorio y numerico
+                            </div>
+                            
                         </div>
 
 
@@ -117,10 +126,6 @@
                             <a href="javascript:history.back()" class='btn btn-dark my-2'>Volver</a>
                         </div>
 
-                    </form>
-                    <form action="{{ route('register.admin.create') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-link">Registrar Administrador</button>
                     </form>
             </div>
 
