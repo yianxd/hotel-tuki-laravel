@@ -26,28 +26,12 @@
 
                     <div class="form-group">
                         <label for="state">Estado</label>
-                        <select class="form-control" name="state" required>
-                            <option value="">Seleccionar estado</option>
-                            <option value="Disponible" {{ $rooms->state == 'Disponible' ? 'selected' : '' }}>Disponible</option>
-                            <option value="Mantenimiento" {{ $rooms->state == 'Mantenimiento' ? 'selected' : '' }}>Mantenimiento</option>
-                            <option value="No Disponible" {{ $rooms->state == 'No Disponible' ? 'selected' : '' }}>No Disponible</option>
-                        </select>
-                        @error('state')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        <input type="state" class="form-control" name="state" placeholder="" required value="{{ $rooms->state }}">
                     </div>
 
                     <div class="form-group">
                         <label for="capacity">Capacidad</label>
                         <input type="number" class="form-control" name="capacity" placeholder="" required value="{{ $rooms->capacity }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="price">Precio</label>
-                        <input type="number" class="form-control" name="price" placeholder="" required value="{{ $rooms->price }}">
-                        @error('price')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                     </div>
 
                     <div class="form-group">

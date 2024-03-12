@@ -29,7 +29,6 @@
                             <th>TIPO DE HABITACION</th>
                             <th>CAPACIDAD</th>
                             <th>ESTADO</th>
-                            <th>PRECIO</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,7 +43,6 @@
                             <td>{{$rooms->id_type}}</td>
                             <td>{{$rooms->capacity}}</td>
                             <td>{{$rooms->state}}</td>
-                            <td>{{$rooms->price}}</td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$rooms->id_number}}">
                                     Eliminar

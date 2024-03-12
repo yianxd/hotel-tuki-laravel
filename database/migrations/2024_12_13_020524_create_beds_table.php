@@ -15,9 +15,7 @@ return new class extends Migration
     {
         Schema::create('beds', function (Blueprint $table) {
             $table->foreignId('id_number');
-            $table->string('suite');
-            $table->string('Doble');
-            $table->string('Simple');
+            $table->string('descripcion');
             $table->foreign('id_number')->references('id_number')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
         });
     }

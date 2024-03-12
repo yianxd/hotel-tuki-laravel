@@ -20,13 +20,17 @@ class RoomController extends Controller
      */
     public function index(Request $request)
     {
-        $texto=trim($request->get('texto'));
-        $rooms=DB::table('rooms')
-                         ->select('id_number','id_type','capacity')
-                         ->where('id_number','LIKE','%'.$texto.'%')
-                         ->orWhere('id_type','LIKE','%'.$texto.'%')
-                         ->orWhere('capacity','Like','%'.$texto.'%')
-                         ->paginate(10);
+        $texto = $request->input('texto');
+        if (!$texto) {
+            $rooms = Room::all();
+        } else {
+            $rooms = Room::where('id_number', 'like', "%$texto%")
+                         ->orWhere('id_type', 'like', "%$texto%")
+                         ->orWhere('capacity', 'like', "%$texto%")
+                         ->orWhere('state', 'like', "%$texto%")
+                         ->orWhere('price', 'like', "%$texto%")
+                         ->get();
+        }
         return  view('room.index',compact('rooms','texto'));
     }
 
@@ -51,7 +55,8 @@ class RoomController extends Controller
         $request->validate([
             'id_number' => 'required|numeric|min:100|max:999',
             'id_type' => 'required|string|min:1',
-            'capacity' => 'required|string|min:1|max:5',
+            'capacity' => 'required|string|min:1|max:100',
+            'price' => 'required|numeric',
         ],
         [
             'id_number.min' => 'El número de identificación debe tener al menos 3 dígitos.',
@@ -60,13 +65,16 @@ class RoomController extends Controller
             'id_type.required' => 'Debe asociar el número de identificación con un tipo de habitación.',
             'capacity.min' => 'La capacidad debe tener al menos 1 caracter.',
             'capacity.max' => 'La capacidad no puede tener más de 5 caracteres.',
+            'price.required' => 'El precio de la habitación es obligatorio.',
+            'price.numeric' => 'El precio de la habitación debe ser un número.',
         ]);
 
         $rooms = new Room;
         $rooms->id_number = $request->input('id_number');
         $rooms->id_type = $request->input('id_type');
         $rooms->capacity = $request->input('capacity');
-        $rooms->state = $request->input('state');
+        $rooms->price = $request->input('price');
+        $rooms->state = 'Disponible';
         $rooms->save();
         return redirect()->route('room.index');
     }
@@ -114,6 +122,8 @@ class RoomController extends Controller
         $rooms->id_number = $request->input('id_number');
         $rooms->id_type = $request->input('id_type');
         $rooms->capacity = $request->input('capacity');
+        $rooms->state = $request->input('state');
+        $rooms->price = $request->input('price');
         $rooms->save();
         return redirect()->route('room.index');
     }
@@ -128,6 +138,6 @@ class RoomController extends Controller
     {
         $rooms = Room::findOrFail($id_number);
         $rooms->delete();
-        return redirect()->route('room.index')->with('success', 'Habitación eliminada correctamente.');
+        return redirect()->route('room.index');
     }
 }

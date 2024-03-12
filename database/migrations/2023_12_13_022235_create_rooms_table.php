@@ -18,7 +18,8 @@ return new class extends Migration
             $table->bigInteger('id_number')->unsigned()->primary();
             $table->foreignId('id_type');
             $table->integer('capacity');
-            $table->integer('state');
+            $table->string('state');
+            $table->decimal('price',$precision=20,$scale=2);
             $table->foreign('id_type')->references('id_type')->on('type_rooms')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

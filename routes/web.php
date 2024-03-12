@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BedsController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,7 @@ use App\Http\Controllers\RoomController;
 */
 
 Route::resource('/room',RoomController::class);
+Route::resource('/beds',BedsController::class);
+Route::resource('/inventory',InventoryController::class);
+Route::resource('/products',ProductsController::class);
 

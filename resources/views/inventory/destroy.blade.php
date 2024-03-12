@@ -14,7 +14,6 @@
                     Tipo de habitacion: {{$rooms->id_type}} <br>
                     Capacidad: {{$rooms->capacity}} <br>
                     Estado: {{$rooms->state}} <br>
-                    Precio: {{$rooms->price}} <br>
 
                 </div>
                 <div class="modal-footer">

@@ -9,13 +9,8 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="id_numbers">Numero Habitacion</label>
-                        <select class="form-control" name="id_numbers" required>
-                            <option value="">Seleccionar número de habitación</option>
-                            @foreach ($id_numbers as $number)
-                                <option value="{{ $number }}">{{ $number }}</option>
-                            @endforeach
-                        </select>
+                        <label for="id_number">Numero Habitacion</label>
+                        <input type="text" class="form-control" name="id_number" placeholder="Escriba el número de habitación" required>
                         @error('id_numbers')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -23,7 +18,7 @@
 
                     <div class="form-group">
                         <label for="descripcion">Descripción</label>
-                        <input type="text" class="form-control" name="descripcion" placeholder="" value="{{ old('descripcion') }}" required>
+                        <input type="text" class="form-control" name="descripcion" placeholder="Escriba la descripción" value="{{ old('descripcion') }}" required>
                         @error('descripcion')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
