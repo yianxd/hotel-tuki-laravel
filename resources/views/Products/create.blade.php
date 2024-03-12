@@ -17,4 +17,3 @@
         <button type="submit">Crear</button>
     </form>
     <a href="{{ route('products.index') }}">Cancelar</a>
-@endsection

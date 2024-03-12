@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         //
-        Schema::create('status_room',function(Blueprint $table){
-            $table->id();
-            $table->string('name');
+        Schema::create('products',function(Blueprint $table){
+            $table->id('id_producto');
+            $table->string('nombre_producto');
             $table->string('description');
+            $table->integer('cantidad');
+            $table->decimal('price',$precision=20,$scale=2);
             $table->timestamps();
 
         });
@@ -31,6 +33,6 @@ return new class extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('status_room');
+        Schema::dropIfExists('products');
     }
 };

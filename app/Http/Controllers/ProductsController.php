@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\products;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Products;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -14,64 +13,127 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Products::all();
-        return view('products.index', compact('products'));
+        $texto = $request->input('texto');
+        if (!$texto) {
+            $products = Products::all();
+        } else {
+            $products = Products::where('id_producto', 'like', "%$texto%")
+                         ->orWhere('nombre_producto', 'like', "%$texto%")
+                         ->orWhere('description', 'like', "%$texto%")
+                         ->orWhere('cantidad', 'like', "%$texto%")
+                         ->orWhere('price', 'like', "%$texto%")
+                         ->get();
+        }
+        return view('products.index',compact('products','texto'));
     }
 
-    public function show($id)
-    {
-        $product = Products::findOrFail($id);
-        return view('products.show', compact('product'));
-    }
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('products.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        // Lógica para almacenar un nuevo producto
-        $data = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|integer',
+        $request->validate([
+            'id_producto' => 'required|numeric|min:100|max:999',
+            'nombre_producto' => 'required|string|min:1',
+            'description' => 'required|string|min:1',
+            'cantidad' => 'required|numeric',
+            'price' => 'required|numeric',
+        ],
+        [
+            'id_producto.min' => 'El ID de producto debe tener al menos 3 dígitos.',
+            'id_producto.max' => 'El ID de producto no puede tener más de 3 dígitos.',
+            'nombre_producto.required' => 'El nombre del producto es obligatorio.',
+            'description.required' => 'La descripción del producto es obligatoria.',
+            'cantidad.required' => 'La cantidad del producto es obligatoria.',
+            'cantidad.numeric' => 'La cantidad del producto debe ser un número.',
+            'price.required' => 'El precio del producto es obligatorio.',
+            'price.numeric' => 'El precio del producto debe ser un número.',
         ]);
 
-        Products::create($data);
-
-        return redirect()->route('products.index')->with('success', 'Producto creado correctamente');
+        $product = new Products;
+        $product->id_producto = $request->input('id_producto');
+        $product->nombre_producto = $request->input('nombre_producto');
+        $product->description = $request->input('description');
+        $product->cantidad = $request->input('cantidad');
+        $product->price = $request->input('price');
+        $product->save();
+        return redirect()->route('products.index');
     }
 
-    public function edit($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id_producto
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id_producto)
     {
-        $product = Products::findOrFail($id);
+        $product = Products::findOrFail($id_producto);
+        if(!$product) {
+            dd("No se encontró ningún producto con el ID proporcionado.");
+        }
+        return view('products.show', compact('product'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id_producto
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id_producto)
+    {
+        $product = Products::findOrFail($id_producto);
+        if(!$product) {
+            dd("No se encontró ningún producto con el ID proporcionado.");
+        }
         return view('products.edit', compact('product'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id_producto
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id_producto)
     {
-        // Lógica para actualizar un producto existente
-        $product = Products::findOrFail($id);
-
-        $data = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-        ]);
-
-        $product->update($data);
-
-        return redirect()->route('products.index')->with('success', 'Producto actualizado correctamente');
+        $product = Products::findOrFail($id_producto);
+        $product->id_producto = $request->input('id_producto');
+        $product->nombre_producto = $request->input('nombre_producto');
+        $product->description = $request->input('description');
+        $product->cantidad = $request->input('cantidad');
+        $product->price = $request->input('price');
+        $product->save();
+        return redirect()->route('products.index');
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id_producto
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id_producto)
     {
-        $product = Products::findOrFail($id);
+        $product = Products::findOrFail($id_producto);
         $product->delete();
-
-        return redirect()->route('products.index')->with('success', 'Producto eliminado correctamente');
+        return redirect()->route('products.index');
     }
 }

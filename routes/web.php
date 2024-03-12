@@ -12,13 +12,12 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginadminController;
 use App\Http\Controllers\RegisterAdminController;
 use App\Http\Controllers\RegisterUsersController;
-
-
-
+use App\Http\Controllers\BedsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +29,12 @@ use App\Http\Controllers\RegisterUsersController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/',function(){return view('welcome');});
 Route::resource('/user', UserController::class);
 Route::resource('/service',ServiceController::class);
+Route::resource('/room',RoomController::class);
+Route::resource('/beds',BedsController::class);
+Route::resource('/inventory',InventoryController::class);
 Route::get('login', [LoginController::class,'index'])->name('login');
 Route::post('logout', [LogoutController::class,'store'])->name('logout');
 Route::post('login', [LoginController::class,'store']);
@@ -49,6 +50,8 @@ Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
 Route::get('/bill/create', [BillController::class, 'create'])->name('bill.create');
 Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
 Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+
+
 
 
 
