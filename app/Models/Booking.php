@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use app\Models\User;
+
 
 
 class Booking extends Model
@@ -16,6 +16,7 @@ class Booking extends Model
     protected $primaryKey = 'id_booking';
 
     protected $fillabel =[
+        'id_booking',
         'amount_rooms',
         'document',
         'amount_people',
@@ -24,9 +25,5 @@ class Booking extends Model
         'price'
     ];
 
-    // public function document()
-    // {
-    //     return $this->belongsTo(User::class, 'document');
-    // }
 
 }

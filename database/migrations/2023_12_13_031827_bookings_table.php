@@ -16,7 +16,7 @@ return new class extends Migration
         //
         Schema::create('bookings',function(Blueprint $table){
 
-            $table->id('id_booking');
+            $table->id();
             $table->foreignId('document');
             $table->foreignId('id_number');
             $table->integer('amount_people');

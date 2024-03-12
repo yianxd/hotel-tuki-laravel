@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body">
                     Eliminar reserva <br>
-                    Codigo: {{$booking->id_booking}} <br>
+                    Codigo: {{$booking->id}} <br>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cerrar</button>

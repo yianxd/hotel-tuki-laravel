@@ -33,12 +33,12 @@
                     @foreach ($booking as $booking)
                     <tr>
                         <td>
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$booking->id_booking}}">
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$booking->id}}">
                                 Cancelar reserva
                             </button> |
-                            <a href="{{route('booking.edit',$booking->id_booking)}}" class="btn btn-warning btn-sm">Actualizar reserva</a>
+                            <a href="{{route('booking.edit',$booking->id)}}" class="btn btn-warning btn-sm">Actualizar reserva</a>
                         </td>
-                        <td>{{$booking->id_booking}}</td>
+                        <td>{{$booking->id}}</td>
                         <td>{{$booking->id_number}}</td>
                         <td>{{$booking->amount_people}}</td>
                         <td>{{$booking->date_start}}</td>

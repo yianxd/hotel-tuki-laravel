@@ -15,7 +15,7 @@ class CustomerController extends Controller
 
     public function index(){
         $booking=DB::table('bookings')
-                    ->select('id_booking','id_number','document','amount_people','date_start','date_end','price')
+                    ->select('id','id_number','document','amount_people','date_start','date_end','price')
                     ->get();
         return view('customer.index',compact('booking'));
 

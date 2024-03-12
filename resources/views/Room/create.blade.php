@@ -9,22 +9,30 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="id_numbers">Numero Habitacion</label>
-                        <select class="form-control" name="id_numbers" required>
-                            <option value="">Seleccionar número de habitación</option>
-                            @foreach ($id_numbers as $number)
-                                <option value="{{ $number }}">{{ $number }}</option>
-                            @endforeach
-                        </select>
-                        @error('id_numbers')
+                        <label for="id_number">Numero Habitacion</label>
+                        <input type="number" class="form-control" name="id_number" placeholder="" value="{{ old('id_number') }}" required>
+                        @error('id_number')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="descripcion">Descripción</label>
-                        <input type="text" class="form-control" name="descripcion" placeholder="" value="{{ old('descripcion') }}" required>
-                        @error('descripcion')
+                        <label for="id_type">tipo de habitacion</label>
+                        <select class="form-control" name="id_type" required>
+                            <option value="">Seleccionar tipo de habitación</option>
+                            <option value="1" {{ old('id_type') == '1' ? 'selected' : '' }}>Habitación Individual</option>
+                            <option value="2" {{ old('id_type') == '2' ? 'selected' : '' }}>Habitación Doble</option>
+                            <option value="3" {{ old('id_type') == '3' ? 'selected' : '' }}>Suite</option>
+                        </select>
+                        @error('id_type')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="capacity">Capacidad</label>
+                        <input type="text" class="form-control" name="capacity" placeholder="" value="{{ old('capacity') }}" required>
+                        @error('capacity')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

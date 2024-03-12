@@ -4,7 +4,7 @@
 
 @section('content')
 <h1>Actualizar</h1>
-<form class="form-control" action="{{ route('booking.update',$booking->id_booking) }}" method="POST" >
+<form class="form-control" action="{{ route('booking.update',$booking->id) }}" method="POST" >
     @csrf
     @method('PUT')
     <div class="col-md-4">

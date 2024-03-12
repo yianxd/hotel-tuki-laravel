@@ -17,7 +17,7 @@
                         <menu>
                             <a class="navbar-brand" href="{{ route('room.index') }}">Gestionar Habitaciones</a>
                             <a class="navbar-brand" href="{{ route('service.index') }}">Gestionar Servicios</a>
-                            <a class="navbar-brand" href="{{ route('register.user.create') }}">Gestionar Usuarios</a>
+                            <a class="navbar-brand" href="{{ route('user.index') }}">Gestionar Usuarios</a>
                             <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
@@ -47,14 +47,15 @@
                         </menu>
                     </nav>
             @elseif (auth()->user()->id_rol==5)
-                <p>Cliente</p>
+
                     <nav class="navbar navbar-expand-lg bg-body-tertiary" >
                         <menu>
-                            <a class="navbar-brand" href="#">Hacer Una Reserva</a>
-                            <a class="navbar-brand" href="#">Consultar Reservas</a>
+                            <a class="navbar-brand" href="{{ route('customer.create')}}">Hacer Una Reserva</a>
+                            <a class="navbar-brand" href="{{ route('customer.index')}}">Consultar Reservas</a>
                             <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
+                    <p>Cliente</p>
             @else
             <p>Rol no encontrado</p>
             @endif

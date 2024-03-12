@@ -19,8 +19,8 @@ class BookingController extends Controller
         //
         $texto=trim($request->get('texto'));
         $booking=DB::table('bookings')
-                    ->select('id_booking','id_number','document','amount_people','date_start','date_end','price')
-                    ->where('id_booking','LIKE','%'.$texto.'%')
+                    ->select('id','id_number','document','amount_people','date_start','date_end','price')
+                    ->where('id','LIKE','%'.$texto.'%')
                     ->orWhere('id_number','LIKE','%'.$texto.'%')
                     ->orWhere('document','LIKE'.'%'.$texto.'%')
                     ->orderBy('id_booking','asc')
@@ -77,10 +77,10 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_booking)
+    public function edit($id)
     {
         //
-        $booking=Booking::findOrFail($id_booking);
+        $booking=Booking::findOrFail($id);
         return view('booking.edit',compact('booking'));
     }
 
@@ -91,7 +91,7 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_booking)
+    public function update(Request $request, $id)
     {
         //
 
@@ -119,7 +119,7 @@ class BookingController extends Controller
         ]
     );
 
-        $booking =Booking::findOrFail($id_booking);
+        $booking =Booking::findOrFail($id);
         $booking->id_number=$request->input('id_number');
         $booking->amount_people=$request->input('amount_people');
         $booking->date_start=$request->input('date_start');
@@ -134,11 +134,11 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_booking)
+    public function destroy($id)
     {
         //
 
-        $booking = Booking::findOrFail($id_booking);
+        $booking = Booking::findOrFail($id);
         $booking->delete();
         return redirect()->route('booking.index');
     }

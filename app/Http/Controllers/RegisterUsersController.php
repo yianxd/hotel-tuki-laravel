@@ -54,11 +54,11 @@ class RegisterUsersController extends Controller
     {
         //
         //$request->validate([
-        //    'password' => ['required', 'confirmed', 
+        //    'password' => ['required', 'confirmed',
         //        Rules\Password::min(8)
         //    ],
         //]);
-       
+
         $user =new User;
         $user->typeDoc=$request->input('typeDoc');
         $user->document=$request->input('document');
@@ -70,7 +70,7 @@ class RegisterUsersController extends Controller
         $user->password=Hash::make($request->password);
         $user->save();
 
-        return redirect()->back();
+        return view('');
 
     }
 

@@ -21,11 +21,11 @@
                     <div class="form-group">
                         <label for="type_user">Tipo Usuario</label>
                         <select name="type_user" class="form-select">
-                            <option name="type_user" value="1">Cliente</option>
-                            <option name="type_user" value="2">Administrador</option>
-                            <option name="type_user" value="3">Recepcionista</option>
-                            <option name="type_user" value="4">Mesero</option>
-                            <option name="type_user"value="5">Roomservice</option>
+                            <option name="type_user" value="5">Cliente</option>
+                            <option name="type_user" value="1">Administrador</option>
+                            <option name="type_user" value="2">Recepcionista</option>
+                            <option name="type_user" value="5">Mesero</option>
+                            <option name="type_user"value="4">Roomservice</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -37,8 +37,7 @@
                         <input type="text" class="form-control" name="phone" value="{{$user->phone}}">
                     </div>
                     <div class="form-group">
-                        <label for="password">Contraseña</label>
-                            <input type="text" class="form-control" name="phone" value="{{$user->password}}">
+                            <input type="password" class="form-control" name="phone" value="{{$user->password}}" hidden>
 
 
                     </div>
