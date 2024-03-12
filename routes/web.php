@@ -47,5 +47,10 @@ Route::get('/register/user', [RegisterUsersController::class, 'create'])->name('
 Route::post('/register/user/store', [RegisterUsersController::class, 'store'])->name('register.user.store');
 Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
 Route::get('/bill/create', [BillController::class, 'create'])->name('bill.create');
+Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
+Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+
+
+
 
 
