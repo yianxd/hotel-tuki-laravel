@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class room extends Model
+class Room extends Controller
 {
-    use HasFactory;
+    //
+    protected $table = "rooms";
 
-    protected $fillable = ['number', 'id_type', 'fee', 'capacity', 'image'];
+    protected $primaryKey = 'id_number';
 
-    public function typeRoom()
-    {
-        return $this->belongsTo(TypeRoom::class, 'id_type');
-    }
+    protected $fillable = [
+        'id_number',
+        'id_type',
+        'capacity',
+        'state',
+    ];
 }

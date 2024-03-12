@@ -13,8 +13,8 @@
                 <br>
                 <small style="color:red">{{$message}} </small>
             @enderror
-            <label class="form-label" for="amount_rooms">Cantidad de habitaciones</label>
-            <input type="number" class="form-control"  name="amount_rooms" required value="{{old('amount_people')}}">
+            <label class="form-label" for="number_room">Tipo de habitacion</label>
+            <input type="number" class="form-control"  name="number_room" required value="{{old('amount_people')}}">
             @error('amount_rooms')
                 <br>
                 <small style="color:red">{{$message}} </small>

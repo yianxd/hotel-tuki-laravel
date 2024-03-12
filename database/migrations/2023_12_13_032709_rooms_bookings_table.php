@@ -17,8 +17,6 @@ return new class extends Migration
         Schema::create('rooms_bookings',function(Blueprint $table){
             $table->foreignId('id_booking');
             $table->foreignId('id_room');
-            $table->foreign('id_booking')->references('id_booking')->on('bookings')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_room')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

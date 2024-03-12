@@ -16,11 +16,7 @@ return new class extends Migration
         //
         Schema::create('inventory_rooms',function(Blueprint $table){
             //$table->id();
-            $table->foreignId('id_room');
-            $table->foreignId('id_product');
             $table->integer('stock');
-            $table->foreign('id_room')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
