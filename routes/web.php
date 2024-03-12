@@ -6,7 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BookingController;
-use App\Models\Customer;
+use App\Http\Controllers\BillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +22,13 @@ use App\Models\Customer;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('bills/pdf',[BillController::class,'pdf'])->name('bill.pdf');
 Route::resource('/user', UserController::class);
 Route::resource('/customer',CustomerController::class);
 Route::resource('/employee',EmployeeController::class);
 Route::resource('/service',ServiceController::class);
+Route::resource('/bills',BillController::class);
 Route::resource('/booking',BookingController::class);
 Route::resource('/customer',CustomerController::class);
+
+
