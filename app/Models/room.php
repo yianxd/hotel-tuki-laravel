@@ -5,14 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class room extends Model
+class Room extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['number', 'id_type', 'fee', 'capacity', 'image'];
+    protected $table = "rooms";
 
-    public function typeRoom()
-    {
-        return $this->belongsTo(TypeRoom::class, 'id_type');
-    }
+    protected $primaryKey = 'id_number';
+
+    protected $fillable = [
+        'id_number',
+        'id_type',
+        'capacity',
+        'state',
+        'price',
+    ];
 }

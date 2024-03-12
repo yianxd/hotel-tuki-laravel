@@ -5,7 +5,7 @@
         <h4>Registro De Cama</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{ route('beds.store') }}" method="post">
+                <form action="{{ route('room.store') }}" method="post">
                     @csrf
 
                     <div class="form-group">
