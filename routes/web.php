@@ -22,7 +22,6 @@ use App\Http\Controllers\BillController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('bills/pdf',[BillController::class,'pdf'])->name('bill.pdf');
 Route::resource('/user', UserController::class);
 Route::resource('/customer',CustomerController::class);
 Route::resource('/employee',EmployeeController::class);

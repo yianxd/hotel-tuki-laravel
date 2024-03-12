@@ -17,10 +17,11 @@ class BillController extends Controller
         return view('bill.index',compact('bill'));
     }
 
-    public function pdf() {
+    public function show($id_bill){
 
-        $bill=Bill::all();
-        $pdf = Pdf::loadView('bill.pdf', compact('bill'));
+        $bills = Bill::all();
+        $bill = $bills->find($id_bill);
+        $pdf = Pdf::loadView('bill.show',$bill);
         return $pdf->stream();
     }
 }
