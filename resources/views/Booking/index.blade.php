@@ -40,21 +40,21 @@
                         <td colspan="7">No hay resultados</td>
                     </tr>
                 @else
-                @foreach ($bookin as $booking)
+                @foreach ($booking as $booking)
                 <tr>
                     <td>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$booking->id_booking}}">
                             Eliminar
                         </button> |
-                        <a href="{{route('booking.edit',$bookin->id_booking)}}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{route('booking.edit',$booking->id_booking)}}" class="btn btn-warning btn-sm">Editar</a>
                     </td>
                     <td>{{$booking->id_booking}}</td>
                     <td>{{$booking->document}}</td>
-                    <td>{{$booking->amount_rooms}}</td>
+                    <td>{{$booking->id_number}}</td>
                     <td>{{$booking->amount_people}}</td>
                     <td>{{$booking->date_start}}</td>
                     <td>{{$booking->date_end}}</td>
-                    <td>{{$booking->amount_price}}</td>
+                    <td>{{$booking->price}}</td>
                 @include('booking.destroy')
                 </tr>
                 @endforeach

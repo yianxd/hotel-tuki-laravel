@@ -9,7 +9,7 @@
     @method('PUT')
     <div class="col-md-4">
         <label class="form-label" for="amount_rooms">Numero de Habitaciones</label>
-        <input type="number" class="form-control"  name="amount_rooms" required value="{{$booking->amount_rooms}}">
+        <input type="number" class="form-control"  name="id_number" required value="{{$booking->amount_rooms}}">
         @error('amount_rooms')
             <br>
             <small style="color:red">{{$message}} </small>
@@ -28,7 +28,7 @@
         @enderror
 
         <label for="form-control" for="date_end">Fecha Final</label>
-        <input type="date" class="form-check-input" name="date_end" value="{{$booking->date_end}}">
+        <input type="date" name="date_end" value="{{$booking->date_end}}">
         @error('date_end')
         <br>
         <small style="color:red">{{$message}} </small>

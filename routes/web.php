@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ServiceController;
@@ -29,12 +28,16 @@ use App\Http\Controllers\BedsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',function(){return view('welcome');});
+
+oute::get('/',function(){return view('welcome');});
 Route::resource('/user', UserController::class);
+Route::resource('/customer',CustomerController::class);
 Route::resource('/service',ServiceController::class);
 Route::resource('/room',RoomController::class);
 Route::resource('/beds',BedsController::class);
+
 Route::resource('/inventory',InventoryController::class);
+Route::resource('/bills',BillController::class);
 Route::get('login', [LoginController::class,'index'])->name('login');
 Route::post('logout', [LogoutController::class,'store'])->name('logout');
 Route::post('login', [LoginController::class,'store']);

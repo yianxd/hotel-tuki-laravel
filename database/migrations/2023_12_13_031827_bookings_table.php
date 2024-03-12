@@ -15,14 +15,17 @@ return new class extends Migration
     {
         //
         Schema::create('bookings',function(Blueprint $table){
+
             $table->id('id_booking');
             $table->foreignId('document');
-            $table->integer('id_number');
+            $table->foreignId('id_number');
             $table->integer('amount_people');
             $table->date('date_start');
             $table->date('date_end');
             $table->float('price');
+            $table->foreign('id_number')->references('id_number')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('document')->references('document')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
 
         });
     }

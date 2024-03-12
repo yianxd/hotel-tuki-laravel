@@ -1,43 +1,46 @@
 @extends('layouts.navbar')
 
+@section('title', 'Facturas')
+
+
 @section('content')
 
-<div class="container">
-    <h4>Facturas</h4>
-    <div class="row">
-        <div class="col-xl-12">
-            <h1>Facturas</h1>
-    <a href="{{ route('bill.create') }}" class="btn btn-success">Crear Factura</a>
+<div class="col-lx-12">
     <div class="table-responsive">
+        <h1 class="text-center py-3">Facturas</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Numero Factura</th>
-                    <th>Documentoo Cliente</th>
-                    <th>Porcentaje</th>
-                    <th>Descuento</th>
-                    <th>Total</th>
+                    <th>Opciones</th>
+                    <th>Numero de factura</th>
+                    <th>Documento</th>
+                    <th>fecha</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($facturas as $factura)
+                @if (count($bill)<=0)
                     <tr>
-                        <td>{{ $factura->id }}</td>
-                        {{-- <td>{{ $factura->cliente->nombre }} {{ $factura->cliente->apellido }}</td> --}}
-                        <td>{{$factura->id_customer}}</td>
-                        <td>{{ $factura->tax_percentage }}</td>
-                        <td>{{ $factura->discount }}</td>
-                        <td>{{ $factura->total }}</td>
-                        </td>
+                        <td colspan="7">No hay facturas</td>
                     </tr>
+                @else
+                @foreach ($bill as $bill)
+                <tr>
+                    <td>
+                        <a href="{{ route('bills.show',$bill->id_bill)}}" class="btn btn-success btn-sm">ver factura</a>
+                    </td>
+                    <td>{{$bill->id_bill}}</td>
+                    <td>{{$bill->document}}</td>
+                    <td>{{$bill->date}}</td>
+                </tr>
                 @endforeach
+                @endif
             </tbody>
         </table>
-            </div>
-        </div>
-
     </div>
+</div>
 
 </div>
+</div>
+
 
 @endsection

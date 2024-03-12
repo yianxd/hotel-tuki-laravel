@@ -1,51 +1,82 @@
 @extends('layouts.navbar')
 
+@section('title', 'Crear Reserva')
+
 @section('content')
-<section>
-    <div class="container text-center mt-5 rounded">
-        <h4>Registro</h4>
-        <div class="row">
-            <div class="col-xl-12">
-                <form action="{{route('customer.store')}}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" class="form-control" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="last_name">Apellido</label>
-                        <input type="text" class="form-control" name="last_name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="user_name">Documento</label>
-                        <input type="number" class="form-control" name="document" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="type_user" id="" value="5" hidden>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="text" class="form-control" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" name="password" required>
-                    </div>
+    <h1>Crear Reserva</h1>
+    <form class="form-control" action="{{ route('customer.store') }}" method="POST" >
+        @csrf
+        <div class="col-md-4">
+            <label class="form-label" for="document">Documento</label>
+            <input  type="text" name="document" class="form-control" value="{{old('document')}}">
+            @error('document')
+                <br>
+                <small style="color:red">{{$message}} </small>
+            @enderror
+            <label for="">SELECCIONE LA HABITACION</label>
+            <div class="col-lx-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>numero</th>
+                                <th>tipo</th>
+                                <th>capacidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (count($room)<=0)
+                                <tr>
+                                    <td colspan="7">No hay resultados</td>
+                                </tr>
+                            @else
+                            @foreach ($room as $room)
+                            <tr>
+                                <td>
+                                    <input type="radio"  name="id_number" value="{{$room->id_number}}">
+                                </td>
+                                <td>{{$room->id_number}}</td>
+                                <td>
+                                    @if ($room->id_type==1)
+                                        simple
+                                    @elseif ($room->id_type==2)
+                                        doble
+                                    @elseif ($room->id_type==3)
+                                        matrimonial
+                                    @else
+                                        suit
+                                    @endif
 
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary my-2 " value="Registro">
-                        <input type="reset" class="btn btn-danger my-2" value="Cancelar">
-                        <a href="javascript:history.back()" class='btn btn-dark my-2'>Volver</a>
-                    </div>
+                                </td>
+                                <td>{{$room->capacity}} persona/s</td>
 
-                </form>
+                            </tr>
+                            @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
+
+            @error('amount_rooms')
+                <br>
+                <small style="color:red">{{$message}} </small>
+            @enderror
+            <label class="form-label" for="amount_people">Cantidad de personas</label>
+            <input type="number" class="form-control" name="amount_people" value="{{old('amount_people')}}" rows="3">
+            @error('amount_people')
+                <br>
+                <small style="color:red">{{$message}} </small>
+            @enderror
+            <label class="form-label" for="date_start">Fecha inicio</label>
+            <input type="date" class="form-control " name="date_start">
+            <label class="form-label" for="date_end">Fecha final</label>
+            <input type="date" class="form-control " name="date_end">
+            <input type="submit" class="btn btn-primary" value="Reservar">
+            <input type="numeric" name="price" value="1000" hidden>
+        </form>
+        <a href="javascript:history.back()" class="btn btn-danger">Cancelar</a>
         </div>
-    </div>
-</section>
 @endsection
