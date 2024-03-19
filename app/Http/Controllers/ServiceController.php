@@ -15,6 +15,19 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+/**
+ * This PHP function retrieves services from the database based on a search query and displays them in
+ * a paginated view.
+ *
+ * @param Request request The `index` function in your code snippet is a controller method that
+ * retrieves services based on the search text provided in the request. Here's a breakdown of the
+ * parameters used in the function:
+ *
+ * @return The `index` function is returning a view called `service.index` with the variables
+ * `` and `` passed to it. The `` variable contains a paginated list of services
+ * fetched from the database table `services` based on the search criteria provided in the ``
+ * variable. The search is performed on the columns `name`, `value`, and `disponibility`
+ */
     public function index(Request $request)
     {
         $texto=trim($request->get('texto'));
@@ -33,6 +46,17 @@ class ServiceController extends Controller
         return view('Service.create');
     }
 
+ /**
+  * The function `store` validates and stores a new service with specific requirements and returns a
+  * success message upon creation.
+  *
+  * @param Request request The `store` function in your code snippet is used to store a new service
+  * based on the data provided in the request. Here's a breakdown of the validation rules and error
+  * messages you have defined:
+  *
+  * @return The `store` function is returning a redirect response to the `service.index` route with a
+  * success message "Servicio creado exitosamente."
+  */
     public function store(Request $request)
     {
 
@@ -75,6 +99,18 @@ class ServiceController extends Controller
         return view('service.edit', compact('service'));
     }
 
+ /**
+  * The update function in PHP validates and updates service information based on user input.
+  *
+  * @param Request request The `update` function in your code snippet is used to update a service based
+  * on the provided request data. Here's a breakdown of the function:
+  * @param id_service The `id_service` parameter in the `update` function represents the unique
+  * identifier of the service that you want to update. This parameter is used to find the specific
+  * service record in the database that needs to be updated. It is typically passed as a route
+  * parameter when making a request to update a service
+  *
+  * @return The `update` function is returning a redirect response to the route named `service.index`.
+  */
     public function update(Request $request, $id_service)
     {
 
@@ -106,6 +142,17 @@ class ServiceController extends Controller
         return redirect()->route('service.index');
     }
 
+/**
+ * The function `destroy` deletes a Service record by its ID and redirects to the service index page
+ * with a success message.
+ *
+ * @param id The `destroy` function in the code snippet is a method typically found in a controller in
+ * a Laravel application. It is responsible for deleting a specific `Service` record from the database
+ * based on the provided `` parameter.
+ *
+ * @return The `destroy` function is returning a redirect response to the `service.index` route with a
+ * success message "Servicio eliminado exitosamente."
+ */
     public function destroy($id)
     {
         $service = Service::findOrFail($id);

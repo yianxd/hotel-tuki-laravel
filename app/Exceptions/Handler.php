@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
 class Handler extends ExceptionHandler
 {
@@ -38,4 +40,20 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+        /**
+     * Render the exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    // public function render($request, Throwable $e)
+    // {
+    //     if($this->isHttpException($e)){
+    //         return response()->view('Customer.index');
+    //     } else{
+    //         return response()->view('Customer.index');
+    //     }
+    // }
+
 }

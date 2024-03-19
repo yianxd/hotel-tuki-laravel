@@ -1,14 +1,14 @@
 @extends('layouts.navbar')
 
 @section('title', 'Crear Reserva')
-
+@auth
 @section('content')
     <h1>Crear Reserva</h1>
     <form class="form-control" action="{{ route('customer.store') }}" method="POST" >
         @csrf
         <div class="col-md-4">
             <label class="form-label" for="document">Documento</label>
-            <input  type="text" name="document" class="form-control" value="{{old('document')}}">
+            <input  type="text" name="document" class="form-control" value="">
             @error('document')
                 <br>
                 <small style="color:red">{{$message}} </small>
@@ -72,9 +72,15 @@
             <input type="date" class="form-control " name="date_start">
             <label class="form-label" for="date_end">Fecha final</label>
             <input type="date" class="form-control " name="date_end">
-            <input type="submit" class="btn btn-primary" value="Reservar">
             <input type="numeric" name="price" value="1000" hidden>
+
+
         </form>
-        <a href="javascript:history.back()" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-primary" value="Reservar" id="guardar">Reservar</button>
+        <a  href="javascript:history.back()" class="btn btn-danger">Cancelar</a>
         </div>
+        <script src="{{asset('js/Customer/btn.js')}}"></script>
+
+
 @endsection
+@endauth

@@ -63,6 +63,7 @@ class RoomController extends Controller
         $rooms->id_type = $request->input('id_type');
         $rooms->capacity = $request->input('capacity');
         $rooms->state = 1;
+        $rooms->price = $request->input('price');
         $rooms->save();
         return redirect()->route('room.index');
     }
