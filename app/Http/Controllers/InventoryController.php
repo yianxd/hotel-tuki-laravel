@@ -6,20 +6,24 @@ use App\Models\Inventory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 class InventoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
+        // Obtener el texto de búsqueda del parámetro de la solicitud
         $texto = $request->input('texto');
+
+        // Si no se proporciona ningún texto de búsqueda, obtener todo el inventario
         if (!$texto) {
             $inventory = Inventory::all();
         } else {
+            // Si se proporciona texto de búsqueda, filtrar el inventario por varios campos
             $inventory = Inventory::where('id_inventario', 'like', "%$texto%")
                          ->orWhere('id_producto', 'like', "%$texto%")
                          ->orWhere('id_number', 'like', "%$texto%")
@@ -28,7 +32,9 @@ class InventoryController extends Controller
                          ->orWhere('nota', 'like', "%$texto%")
                          ->get();
         }
-        return view('inventory.index',compact('inventory','texto'));
+
+        // Devolver la vista 'index' con el inventario y el texto de búsqueda
+        return view('inventory.index', compact('inventory', 'texto'));
     }
 
     /**
@@ -38,6 +44,7 @@ class InventoryController extends Controller
      */
     public function create()
     {
+        // Devolver la vista para crear un nuevo elemento de inventario
         return view('inventory.create');
     }
 
@@ -49,6 +56,7 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
+        // Validar los datos de la solicitud para almacenar un nuevo elemento de inventario
         $request->validate([
             'id_inventario' => 'required|numeric|min:100',
             'id_producto' => 'required|string|min:1',
@@ -67,6 +75,7 @@ class InventoryController extends Controller
             'responsable.required' => 'El responsable es obligatorio.',
         ]);
 
+        // Crear una nueva instancia del elemento de inventario y guardarlo en la base de datos
         $inventory = new Inventory;
         $inventory->id_inventario = $request->input('id_inventario');
         $inventory->id_producto = $request->input('id_producto');
@@ -75,6 +84,8 @@ class InventoryController extends Controller
         $inventory->responsable = $request->input('responsable');
         $inventory->nota = $request->input('nota');
         $inventory->save();
+
+        // Redirigir a la página de índice de inventario
         return redirect()->route('inventory.index');
     }
 
@@ -86,10 +97,15 @@ class InventoryController extends Controller
      */
     public function show($id_inventario)
     {
+        // Buscar el elemento de inventario con el ID proporcionado
         $inventory = Inventory::findOrFail($id_inventario);
-        if(!$inventory) {
+
+        // Si no se encuentra el elemento de inventario, mostrar un mensaje de error
+        if (!$inventory) {
             dd("No se encontró ningún inventario con el ID proporcionado.");
         }
+
+        // Devolver la vista 'show' con el elemento de inventario encontrado
         return view('inventory.show', compact('inventory'));
     }
 
@@ -101,10 +117,15 @@ class InventoryController extends Controller
      */
     public function edit($id_inventario)
     {
+        // Buscar el elemento de inventario con el ID proporcionado para editarlo
         $inventory = Inventory::findOrFail($id_inventario);
-        if(!$inventory) {
+
+        // Si no se encuentra el elemento de inventario, mostrar un mensaje de error
+        if (!$inventory) {
             dd("No se encontró ningún inventario con el ID proporcionado.");
         }
+
+        // Devolver la vista 'edit' con el elemento de inventario encontrado
         return view('inventory.edit', compact('inventory'));
     }
 
@@ -117,7 +138,10 @@ class InventoryController extends Controller
      */
     public function update(Request $request, $id_inventario)
     {
+        // Buscar el elemento de inventario con el ID proporcionado para actualizarlo
         $inventory = Inventory::findOrFail($id_inventario);
+
+        // Actualizar los datos del elemento de inventario con los datos de la solicitud
         $inventory->id_inventario = $request->input('id_inventario');
         $inventory->id_producto = $request->input('id_producto');
         $inventory->id_number = $request->input('id_number');
@@ -125,6 +149,8 @@ class InventoryController extends Controller
         $inventory->responsable = $request->input('responsable');
         $inventory->nota = $request->input('nota');
         $inventory->save();
+
+        // Redirigir a la página de índice de inventario
         return redirect()->route('inventory.index');
     }
 
@@ -136,8 +162,13 @@ class InventoryController extends Controller
      */
     public function destroy($id_inventario)
     {
+        // Buscar el elemento de inventario con el ID proporcionado para eliminarlo
         $inventory = Inventory::findOrFail($id_inventario);
+
+        // Eliminar el elemento de inventario de la base de datos
         $inventory->delete();
+
+        // Redirigir a la página de índice de inventario
         return redirect()->route('inventory.index');
     }
 }
