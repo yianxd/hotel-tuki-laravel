@@ -10,68 +10,66 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterUsersController extends Controller
 {
-    //
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de usuarios filtrada por un texto de búsqueda.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        //
-        //
-        $texto=trim($request->get('texto'));
-        $user=DB::table('users')
-                        ->select('typeDoc','document','name','last_name','phone','email','id_rol')
-                         ->where('last_name','LIKE','%'.$texto.'%')
-                         ->orWhere('name','LIKE','%'.$texto.'%')
-                         ->orWhere('typeDoc','LIKE','%'.$texto)
-                         ->orWhere('document','Like','%'.$texto.'%')
-                         ->orderBy('document','asc')
-                         ->paginate(10);
-        return  view('User.index',compact('user','texto'));
+        // Obtener el texto de búsqueda y limpiar espacios en blanco
+        $texto = trim($request->get('texto'));
 
+        // Realizar consulta a la base de datos para obtener usuarios filtrados
+        $user = DB::table('users')
+                        ->select('typeDoc', 'document', 'name', 'last_name', 'phone', 'email', 'id_rol')
+                        ->where('last_name', 'LIKE', '%' . $texto . '%')
+                        ->orWhere('name', 'LIKE', '%' . $texto . '%')
+                        ->orWhere('typeDoc', 'LIKE', '%' . $texto)
+                        ->orWhere('document', 'LIKE', '%' . $texto . '%')
+                        ->orderBy('document', 'asc')
+                        ->paginate(10);
+
+        // Retornar la vista 'User.index' con los usuarios y el texto de búsqueda
+        return view('User.index', compact('user', 'texto'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo usuario.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        // Retornar la vista 'Admin.RegisterUsers' para crear un nuevo usuario
         return view('Admin.RegisterUsers');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un nuevo usuario en la base de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
-        //$request->validate([
-        //    'password' => ['required', 'confirmed',
-        //        Rules\Password::min(8)
-        //    ],
-        //]);
-
-        $user =new User;
-        $user->typeDoc=$request->input('typeDoc');
-        $user->document=$request->input('document');
-        $user->id_rol=$request->input('type_user');
-        $user->name=$request->input('name');
-        $user->last_name=$request->input('last_name');
-        $user->email=$request->input('email');
-        $user->phone=$request->input('phone');
-        $user->password=Hash::make($request->password);
+        // Crear un nuevo objeto User y asignar los valores del formulario
+        $user = new User;
+        $user->typeDoc = $request->input('typeDoc');
+        $user->document = $request->input('document');
+        $user->id_rol = $request->input('type_user');
+        $user->name = $request->input('name');
+        $user->last_name = $request->input('last_name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        // Hashear la contraseña antes de almacenarla en la base de datos
+        $user->password = Hash::make($request->password);
+        // Guardar el nuevo usuario en la base de datos
         $user->save();
 
+        // Redirigir a una vista específica después de almacenar el usuario
         return view('');
-
     }
 
     /**
