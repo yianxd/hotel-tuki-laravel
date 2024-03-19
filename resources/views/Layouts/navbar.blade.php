@@ -95,7 +95,6 @@
                     </ol>
                 </nav>
             @endguest
-
 </body>
 @yield('content')
 </html>

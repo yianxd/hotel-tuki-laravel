@@ -38,6 +38,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="price">Precio</label>
+                        <input type="number" class="form-control" name="price">
+                    </div>
+
+                    <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Registro">
                         <input type="reset" class="btn btn-danger" value="Cancelar">
                         <a href="javascript:history.back()" class='btn btn-dark'>Volver</a>
