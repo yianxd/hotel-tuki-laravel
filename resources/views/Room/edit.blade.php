@@ -42,7 +42,7 @@
                         <input type="number" class="form-control" name="capacity" placeholder="" required value="{{ $rooms->capacity }}">
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Actualizar">
+                        <input type="submit" class="btn btn-primary" value="Actualizar" onclick="return confirmSubmit();">
                         <input type="reset" class="btn btn-danger" value="Cancelar">
                         <a href="javascript:history.back()" class='btn btn-dark'>Volver</a>
                     </div>
@@ -50,4 +50,26 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function confirmSubmit() {
+        var id_number = document.getElementsByName('id_number')[0].value;
+        var id_type = document.getElementsByName('id_type')[0].value;
+        var capacity = document.getElementsByName('capacity')[0].value;
+        var state = document.getElementsByName('state')[0].value;
+        var price = document.getElementsByName('price')[0].value;
+
+        var confirmationMessage = "¿Estás seguro de actualizar la habitación con los siguientes detalles?\n\n" +
+                                    "Número de Habitación: " + id_number + "\n" +
+                                    "Tipo de Habitación: " + id_type + "\n" +
+                                    "Capacidad: " + capacity + "\n" +
+                                    "Estado: " + state + "\n" +
+                                    "Precio: " + price + "\n";
+
+        return confirm(confirmationMessage);
+    }
+</script>
 @endsection

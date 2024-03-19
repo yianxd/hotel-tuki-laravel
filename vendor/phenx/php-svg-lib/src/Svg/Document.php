@@ -23,6 +23,10 @@ use Svg\Tag\Polygon;
 use Svg\Tag\Polyline;
 use Svg\Tag\Rect;
 use Svg\Tag\Stop;
+<<<<<<< HEAD
+=======
+use Svg\Tag\Symbol;
+>>>>>>> Angelo
 use Svg\Tag\Text;
 use Svg\Tag\StyleTag;
 use Svg\Tag\UseTag;
@@ -133,6 +137,10 @@ class Document extends AbstractTag
                 break;
             }
         }
+<<<<<<< HEAD
+=======
+        xml_parse($parser, "", true);
+>>>>>>> Angelo
 
         xml_parser_free($parser);
 
@@ -322,10 +330,21 @@ class Document extends AbstractTag
                 break;
 
             case 'g':
+<<<<<<< HEAD
             case 'symbol':
                 $tag = new Group($this, $name);
                 break;
 
+=======
+                $tag = new Group($this, $name);
+                break;
+
+            case 'symbol':
+                $this->inDefs = true;
+                $tag = new Symbol($this, $name);
+                break;
+    
+>>>>>>> Angelo
             case 'clippath':
                 $tag = new ClipPath($this, $name);
                 break;
@@ -378,6 +397,14 @@ class Document extends AbstractTag
                 $this->inDefs = false;
                 return;
 
+<<<<<<< HEAD
+=======
+            case 'symbol':
+                $this->inDefs = false;
+                $tag = array_pop($this->stack);
+                break;
+    
+>>>>>>> Angelo
             case 'svg':
             case 'path':
             case 'rect':
@@ -393,7 +420,10 @@ class Document extends AbstractTag
             case 'style':
             case 'text':
             case 'g':
+<<<<<<< HEAD
             case 'symbol':
+=======
+>>>>>>> Angelo
             case 'clippath':
             case 'use':
             case 'a':
@@ -401,7 +431,11 @@ class Document extends AbstractTag
                 break;
         }
 
+<<<<<<< HEAD
         if (!$this->inDefs && $tag) {
+=======
+        if ((!$this->inDefs && $tag) || $tag instanceof StyleTag) {
+>>>>>>> Angelo
             $tag->handleEnd();
         }
     }

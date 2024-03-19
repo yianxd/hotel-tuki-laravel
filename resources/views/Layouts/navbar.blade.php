@@ -97,6 +97,7 @@
             @endguest
 </body>
 @yield('content')
+@yield('scripts')
 </html>
 
 

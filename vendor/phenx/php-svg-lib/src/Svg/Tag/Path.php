@@ -54,7 +54,7 @@ class Path extends Shape
     {
         $commands = array();
         preg_match_all('/([MZLHVCSQTAmzlhvcsqta])([eE ,\-.\d]+)*/', $commandSequence, $commands, PREG_SET_ORDER);
-        
+
         $path = array();
         foreach ($commands as $c) {
             if (count($c) == 3) {

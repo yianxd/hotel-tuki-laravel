@@ -1,5 +1,6 @@
 <div class="modal fade" id="modal-delete-{{$bed->id_number}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+
         <form action="{{ route('beds.destroy', $bed->id_number) }}" method="post">
             @csrf
             @method('DELETE')

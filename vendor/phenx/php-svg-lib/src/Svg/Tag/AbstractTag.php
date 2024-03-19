@@ -233,4 +233,4 @@ abstract class AbstractTag
 
         return (new CssLength($size))->toPixels($reference);
     }
-} 
+}

@@ -3,10 +3,11 @@
 @section('content')
 
 <div class="container">
-    <h4>Habitacion</h4>
+    <h4>Inventario</h4>
     <div class="row">
         <div class="col-xl-12">
-            <form action="{{ route('room.index') }}" method="post">
+            <form action="{{ route('inventory.index') }}" method="post">
+                @csrf
                 <div class="form-row">
                     <div class="col-sm-3 my-1">
                         <input type="text" class="form-control" name="texto" value="{{$texto}}">
@@ -15,7 +16,7 @@
                           <input type="submit" class="btn btn-primary" value="Buscar">
                     </div>
                     <div class="col-auto my-1">
-                        <a href="{{route('room.create')}}" class="btn btn-success">Nuevo registro</a>
+                        <a href="{{route('inventory.create')}}" class="btn btn-success">Nuevo registro</a>
                     </div>
                 </div>
             </form>
@@ -25,33 +26,37 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>NUMERO DE HABITACION</th>
-                            <th>TIPO DE HABITACION</th>
-                            <th>CAPACIDAD</th>
-                            <th>ESTADO</th>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Número de Identificación</th>
+                            <th>Stock</th>
+                            <th>Responsable</th>
+                            <th>Nota</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($rooms)<=0)
+                        @if (count($inventories) <= 0)
                             <tr>
-                                <td colspan="7">No hay resultados</td>
+                                <td colspan="6">No hay resultados</td>
                             </tr>
                         @else
-                        @foreach ($rooms as $rooms)
-                        <tr>
-                            <td>{{$rooms->id_number }}</td>
-                            <td>{{$rooms->id_type}}</td>
-                            <td>{{$rooms->capacity}}</td>
-                            <td>{{$rooms->state}}</td>
-                            <td>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$rooms->id_number}}">
-                                    Eliminar
-                                </button> |
-                                <a href="{{route('room.edit',$rooms->id_number)}} " class="btn btn-warning btn-sm">Editar</a>
-                            </td>
-                        </tr>
-                        @include('room.destroy')
-                        @endforeach
+                            @foreach ($inventories as $inventory)
+                            <tr>
+                                <td>{{$inventory->id_inventario }}</td>
+                                <td>{{$inventory->id_producto}}</td>
+                                <td>{{$inventory->id_number}}</td>
+                                <td>{{$inventory->stock}}</td>
+                                <td>{{$inventory->responsable}}</td>
+                                <td>{{$inventory->nota}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$inventory->id_inventario}}">
+                                        Eliminar
+                                    </button> |
+                                    <a href="{{route('inventory.edit',$inventory->id_inventario)}} " class="btn btn-warning btn-sm">Editar</a>
+                                </td>
+                            </tr>
+                            @include('inventory.destroy')
+                            @endforeach
                         @endif
                     </tbody>
                 </table>

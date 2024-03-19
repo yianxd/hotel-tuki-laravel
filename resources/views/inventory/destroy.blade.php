@@ -1,6 +1,6 @@
-<div class="modal fade" id="modal-delete-{{$rooms->id_number}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-delete-{{$inventory->id_inventario}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{route('room.destroy',$rooms->id_number)}}" method="post">
+        <form action="{{route('inventory.destroy',$inventory->id_inventario)}}" method="post">
             @csrf
             @method('DELETE')
             <div class="modal-content">
@@ -9,20 +9,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Esta seguro de eliminar habitacion <br>
-                    Codigo: {{$rooms->id_number}} <br>
-                    Tipo de habitacion: {{$rooms->id_type}} <br>
-                    Capacidad: {{$rooms->capacity}} <br>
-                    Estado: {{$rooms->state}} <br>
-
+                    ¿Está seguro de eliminar el registro del inventario? <br>
+                    ID Inventario: {{$inventory->id_inventario}} <br>
+                    ID Producto: {{$inventory->id_producto}} <br>
+                    ID Habitación: {{$inventory->id_number}} <br>
+                    Stock: {{$inventory->stock}} <br>
+                    Responsable: {{$inventory->responsable}} <br>
+                    Nota: {{$inventory->nota}} <br>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
+                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                    <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
                 </div>
             </div>
         </form>
-
     </div>
 </div>
-

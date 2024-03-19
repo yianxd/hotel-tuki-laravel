@@ -1,3 +1,5 @@
+/* The code you provided is a Blade template in a Laravel application. Let me explain what each part
+does: */
 @extends('layouts.navbar')
 
 @section('content')
@@ -5,9 +7,8 @@
         <h4>Registro De Cama</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{ route('beds.store') }}" method="post">
+                <form id="bedForm" action="{{ route('beds.store') }}" method="post">
                     @csrf
-
                     <div class="form-group">
                         <label for="id_number">Numero Habitacion</label>
                         <input type="text" class="form-control" name="id_number" placeholder="Escriba el número de habitación" required>
@@ -25,7 +26,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Registro">
+                        <input type="submit" class="btn btn-primary" value="Registro" id="submitButton">
                         <input type="reset" class="btn btn-danger" value="Cancelar">
                         <a href="javascript:history.back()" class='btn btn-dark'>Volver</a>
                     </div>
@@ -34,4 +35,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function(event) {
+            event.preventDefault(); //Evita que el formulario se envíe automáticamente
+
+            //Recupera los valores de los campos del formulario
+            var idNumber = document.querySelector('input[name="id_number"]').value;
+            var descripcion = document.querySelector('input[name="descripcion"]').value;
+
+            //Crea el mensaje de confirmación con la información ingresada
+            var confirmMessage = "¿Estás seguro de registrar esta cama?\n\n" +
+                                 "Número de habitación: " + idNumber + "\n" +
+                                 "Descripción: " + descripcion;
+
+            //Muestra la alerta con el mensaje de confirmación
+            if (confirm(confirmMessage)) {
+                document.getElementById('bedForm').submit(); //Envía el formulario si se confirma la acción
+            }
+        });
+    </script>
 @endsection

@@ -119,4 +119,4 @@ class UseTag extends AbstractTag
             $_child->handleEnd();
         }
     }
-} 
+}
