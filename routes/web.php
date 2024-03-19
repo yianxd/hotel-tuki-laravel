@@ -30,33 +30,47 @@ use App\Http\Controllers\BedsController;
 */
 
 Route::get('/',function(){return view('welcome');});
+
+
 Route::resource('/user', UserController::class);
-Route::resource('/customer',CustomerController::class);
-Route::resource('/booking', BookingController::class);
-Route::resource('/service',ServiceController::class);
-Route::resource('/room',RoomController::class);
-Route::resource('/beds',BedsController::class);
 
-Route::resource('/inventory',InventoryController::class);
-Route::resource('/bills',BillController::class);
+/*Modulo reserva */
 
-Route::get('login', [LoginController::class,'index'])->name('login');
+Route::resource('/customer',CustomerController::class)->middleware('auth');
+Route::resource('/booking', BookingController::class)->middleware('auth');
+
+
+/*Modulo Admin */
+
+Route::resource('/service',ServiceController::class)->middleware('auth');
+Route::resource('/room',RoomController::class)->middleware('auth');
+Route::resource('/beds',BedsController::class)->middleware('auth');
+
+Route::resource('/inventory',InventoryController::class)->middleware('auth');
+Route::resource('/bills',BillController::class)->middleware('auth');
+
+Route::get('/products', [ProductsController::class, 'index'])->name('products.index')->middleware('auth');
+Route::get('/room', [RoomController::class, 'index'])->name('room.index')->middleware('auth');
+
+Route::get('/service', [ServiceController::class, 'index'])->name('service.index')->middleware('guest');
+Route::get('/register/user', [RegisterUsersController::class, 'create'])->name('register.user.create');
+Route::post('/register/user/store', [RegisterUsersController::class, 'store'])->name('register.user.store')->middleware('auth');
+
+/*Modulo Login */
+
+Route::get('login', [LoginController::class,'index'])->name('login')->middleware('guest');
 Route::post('logout', [LogoutController::class,'store'])->name('logout');
-Route::post('login', [LoginController::class,'store']);
+Route::post('login', [LoginController::class,'store'])->middleware('guest');
 
 Route::post('/register/admin', [RegisterAdminController::class, 'create'])->name('register.admin.create');
 Route::get('/home', [HomeController::class,'index'])->name('home.index')->middleware('auth');
 
-Route::get('/soport',function(){return view('soport');})->name('soport');
-Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
-Route::get('/room', [RoomController::class, 'index'])->name('room.index');
+Route::get('/soport',function(){return view('soport');})->name('soport')->middleware('auth');
 
-Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
-Route::get('/register/user', [RegisterUsersController::class, 'create'])->name('register.user.create');
-Route::post('/register/user/store', [RegisterUsersController::class, 'store'])->name('register.user.store');
 
-Route::get('/bill', [BillController::class, 'index'])->name('bill.index');
-Route::get('/bill/create', [BillController::class, 'create'])->name('bill.create');
+/*Modulo factura */
+Route::get('/bill', [BillController::class, 'index'])->name('bill.index')->middleware('auth');
+Route::get('/bill/create', [BillController::class, 'create'])->name('bill.create')->middleware('auth');
 
 
 
