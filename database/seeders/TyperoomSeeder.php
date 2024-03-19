@@ -18,21 +18,18 @@ class TyperoomSeeder extends Seeder
     {
         $data=[
             [
-                'id_type'=>'1',
                 'name'=>'Habitacion Individual',
-                'description'=>'',
+                'description'=>'Tu refugio personal, perfecto para una experiencia tranquila y confortable.',
             ],
 
             [
-                'id_type'=>'2',
                 'name'=>'Habitacion Doble',
-                'description'=>'',
+                'description'=>'Comparte momentos especiales con tu pareja o amigo en un ambiente acogedor y relajante.',
             ],
 
             [
-                'id_type'=>'3',
                 'name'=>'Suite',
-                'description'=>'',
+                'description'=>'Sumérgete en el lujo y la comodidad con nuestra suite exclusiva, donde cada detalle está diseñado para tu deleite absoluto.',
             ]
             ];
             DB::table('type_rooms')->insert($data);
