@@ -1,7 +1,6 @@
 <div class="modal fade" id="modal-delete-{{$bed->id_number}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-/* This code snippet is creating a modal dialog box for deleting a bed entry. Here's a breakdown of
-what each part of the code is doing: */
+
         <form action="{{ route('beds.destroy', $bed->id_number) }}" method="post">
             @csrf
             @method('DELETE')

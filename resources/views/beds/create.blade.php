@@ -9,9 +9,6 @@ does: */
             <div class="col-xl-12">
                 <form id="bedForm" action="{{ route('beds.store') }}" method="post">
                     @csrf
-
-/* The code snippet you provided is a form field for entering the "Numero Habitacion" (Room Number) in
-a registration form for a bed. Let's break down what each part does: */
                     <div class="form-group">
                         <label for="id_number">Numero Habitacion</label>
                         <input type="text" class="form-control" name="id_number" placeholder="Escriba el número de habitación" required>
@@ -20,8 +17,6 @@ a registration form for a bed. Let's break down what each part does: */
                         @enderror
                     </div>
 
-/* This code snippet is creating a form field for entering the "Descripción" (Description) in a
-registration form for a bed. Let's break down what each part does: */
                     <div class="form-group">
                         <label for="descripcion">Descripción</label>
                         <input type="text" class="form-control" name="descripcion" placeholder="Escriba la descripción" value="{{ old('descripcion') }}" required>
@@ -30,8 +25,6 @@ registration form for a bed. Let's break down what each part does: */
                         @enderror
                     </div>
 
-/* This code snippet is creating a section within the form for the bed registration that includes three
-elements: */
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Registro" id="submitButton">
                         <input type="reset" class="btn btn-danger" value="Cancelar">

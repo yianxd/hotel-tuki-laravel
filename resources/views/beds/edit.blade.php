@@ -5,30 +5,24 @@
         <h4>Actualizar Cama</h4>
         <div class="row">
             <div class="col-xl-12">
-               /* The code snippet you provided is creating a form in a Laravel Blade template for
-               updating a bed entry. Let me break down the purpose of each part of the form: */
+
                 <form id="updateBedForm" action="{{ route('beds.update', $bed->id) }}" method="post">
                     @csrf
                     @method('PUT')
 
-/* The code snippet you provided is creating a form input field for updating the "Numero Habitacion"
-(Room Number) of a bed entry. Let's break down the purpose of each part of this specific form input
-field: */
+
                     <div class="form-group">
                         <label for="id_number">Numero Habitacion</label>
                         <input type="text" class="form-control" name="id_number" placeholder="Escriba el número de habitación" required value="{{ $bed->id_number }}">
                     </div>
 
-/* The code snippet you provided is creating a form input field for updating the "Descripción"
-(Description) of a bed entry. Let's break down the purpose of each part of this specific form input
-field: */
+
                     <div class="form-group">
                         <label for="descripcion">Descripción</label>
                         <input type="text" class="form-control" name="descripcion" placeholder="Escriba la descripción" required value="{{ $bed->descripcion }}">
                     </div>
 
-/* This part of the code snippet is creating a section within the form for the user to interact with
-buttons. Let's break down the purpose of each element within this section: */
+
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Actualizar" id="submitButton">
                         <input type="reset" class="btn btn-danger" value="Cancelar">

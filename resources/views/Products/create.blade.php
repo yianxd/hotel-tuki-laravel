@@ -7,7 +7,7 @@
             <div class="col-xl-12">
                 <form id="productForm" action="{{ route('product.store') }}" method="post">
                     @csrf
-/*formulario para inserta un producto*/
+
                     <div class="form-group">
                         <label for="nombre_producto">Nombre del Producto</label>
                         <input type="text" class="form-control" name="nombre_producto" placeholder="" value="{{ old('nombre_producto') }}" required>

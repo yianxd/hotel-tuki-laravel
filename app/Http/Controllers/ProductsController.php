@@ -55,7 +55,7 @@ class ProductsController extends Controller
             'price' => 'required|numeric',
         ],
         [
-            'id_producto.min' => 'El ID de producto debe tener al menos 3 dígitos.',
+            'id_producto.min' => 'El ID de producto debe tener al menos 1 dígitos.',
             'id_producto.max' => 'El ID de producto no puede tener más de 3 dígitos.',
             'nombre_producto.required' => 'El nombre del producto es obligatorio.',
             'description.required' => 'La descripción del producto es obligatoria.',

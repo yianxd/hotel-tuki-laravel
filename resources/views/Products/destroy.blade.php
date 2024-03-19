@@ -8,7 +8,6 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                /*modulo para la alerta  de eliminacion*/
                 <div class="modal-body">
                     ¿Está seguro de eliminar el producto? <br>
                     Código: {{$product->id_producto}} <br>

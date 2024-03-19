@@ -8,8 +8,7 @@
                 <form id="inventoryForm" action="{{ route('inventory.store') }}" method="post">
                     @csrf
 
-/* The code snippet you provided is creating a form input field for "ID Inventario" within a Bootstrap
-form group. Here's a breakdown of what each part does: */
+
                     <div class="form-group">
                         <label for="id_inventario">ID Inventario</label>
                         <input type="number" class="form-control" name="id_inventario" placeholder="" value="{{ old('id_inventario') }}" required>
@@ -18,8 +17,7 @@ form group. Here's a breakdown of what each part does: */
                         @enderror
                     </div>
 
-/* The code snippet you provided is creating a form input field for "ID Producto" within a Bootstrap
-form group. Here's a breakdown of what each part does: */
+
                     <div class="form-group">
                         <label for="id_producto">ID Producto</label>
                         <input type="number" class="form-control" name="id_producto" placeholder="" value="{{ old('id_producto') }}" required>
@@ -28,8 +26,7 @@ form group. Here's a breakdown of what each part does: */
                         @enderror
                     </div>
 
-/* This code snippet is creating a form input field for "ID Habitación" within a Bootstrap form group.
-Here's a breakdown of what each part does: */
+
                     <div class="form-group">
                         <label for="id_number">ID Habitación</label>
                         <input type="number" class="form-control" name="id_number" placeholder="" value="{{ old('id_number') }}" required>
@@ -38,8 +35,7 @@ Here's a breakdown of what each part does: */
                         @enderror
                     </div>
 
-/* The provided code snippet is creating a form input field for "Stock" within a Bootstrap form group.
-Here's a breakdown of what each part does: */
+
                     <div class="form-group">
                         <label for="stock">Stock</label>
                         <input type="text" class="form-control" name="stock" placeholder="" value="{{ old('stock') }}" required>
@@ -48,8 +44,7 @@ Here's a breakdown of what each part does: */
                         @enderror
                     </div>
 
-/* This code snippet is creating a form input field for the "Responsable" (Responsible) field within a
-Bootstrap form group. Here's a breakdown of what each part does: */
+
                     <div class="form-group">
                         <label for="responsable">Responsable</label>
                         <input type="text" class="form-control" name="responsable" placeholder="" value="{{ old('responsable') }}" required>
@@ -57,8 +52,7 @@ Bootstrap form group. Here's a breakdown of what each part does: */
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-/* The provided code snippet is creating a form input field for the "Nota" (Note) field within a
-Bootstrap form group. Here's a breakdown of what each part does: */
+
 
                     <div class="form-group">
                         <label for="nota">Nota</label>
@@ -68,8 +62,6 @@ Bootstrap form group. Here's a breakdown of what each part does: */
                         @enderror
                     </div>
 
-/* The code snippet you provided is creating a form group at the end of the form. Here's a breakdown of
-what each part does: */
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Registro" id="submitButton">
                         <input type="reset" class="btn btn-danger" value="Cancelar">

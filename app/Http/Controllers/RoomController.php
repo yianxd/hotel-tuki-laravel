@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use App\Models\Room;
-
+use Illuminate\Validation\Rule;
 
 class RoomController extends Controller
 {
@@ -53,7 +53,7 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_number' => 'required|numeric|min:100|max:999',
+            'id_number' => ['required', 'numeric', 'min:100', 'max:999', Rule::unique('rooms', 'id_number')],
             'id_type' => 'required|string|min:1',
             'capacity' => 'required|string|min:1|max:100',
             'price' => 'required|numeric',

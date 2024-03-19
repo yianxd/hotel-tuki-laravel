@@ -9,36 +9,31 @@
                     @csrf
                     @method('PUT')
 
-/* The code snippet you provided is creating a form input field for the "Nombre del Producto" (Product
-Name) in a product update form. Here's a breakdown of what each part of the code is doing: */
+
                     <div class="form-group">
                         <label for="nombre_producto">Nombre del Producto</label>
                         <input type="text" class="form-control" name="nombre_producto" placeholder="" required value="{{ $product->nombre_producto }}">
                     </div>
 
-/* The code snippet you provided is creating a textarea input field for the "Descripción" (Description)
-of a product in a product update form. Here's a breakdown of what each part of the code is doing: */
+
                     <div class="form-group">
                         <label for="description">Descripción</label>
                         <textarea class="form-control" name="description" rows="3" required>{{ $product->description }}</textarea>
                     </div>
 
-/* This code snippet is creating a form input field for the "Cantidad" (Quantity) of a product in a
-product update form. Here's a breakdown of what each part of the code is doing: */
+
                     <div class="form-group">
                         <label for="cantidad">Cantidad</label>
                         <input type="number" class="form-control" name="cantidad" placeholder="" required value="{{ $product->cantidad }}">
                     </div>
 
-/* This code snippet is creating a form input field for the "Precio" (Price) of a product in a product
-update form. Here's a breakdown of what each part of the code is doing: */
+
                     <div class="form-group">
                         <label for="price">Precio</label>
                         <input type="number" class="form-control" name="price" placeholder="" required value="{{ $product->price }}">
                     </div>
 
-/* This part of the code is creating buttons within a form for updating a product. Here's a breakdown
-of what each element is doing: */
+
                     <div class="form-group">
                         <input type="button" class="btn btn-primary" value="Actualizar" onclick="confirmUpdate()">
                         <input type="reset" class="btn btn-danger" value="Cancelar">
@@ -49,8 +44,7 @@ of what each element is doing: */
         </div>
     </div>
 
-/* The script you provided is a JavaScript function named `confirmUpdate()` that is triggered when the
-user clicks the "Actualizar" button in the form. Here's a breakdown of what the function does: */
+
     <script>
         function confirmUpdate() {
             var form = document.getElementById('updateProductForm');
