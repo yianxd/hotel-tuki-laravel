@@ -124,6 +124,7 @@
                             <input type="submit" class="btn btn-primary my-2 " value="Registro">
                             <input type="reset" class="btn btn-danger my-2" value="Cancelar">
                             <a href="javascript:history.back()" class='btn btn-dark my-2'>Volver</a>
+                            <script src="{{asset(js/registrarUsuarios/register.js)}}"></script>
                         </div>
 
                     </form>

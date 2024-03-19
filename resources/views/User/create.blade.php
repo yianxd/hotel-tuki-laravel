@@ -121,6 +121,7 @@
                     <form action="{{ route('register.admin.create') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-link">Registrar Administrador</button>
+                        <script src="{{asset(js/registrarUsuarios/register.js)}}"></script>
                     </form>
             </div>
 

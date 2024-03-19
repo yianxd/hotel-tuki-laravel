@@ -29,6 +29,7 @@
                         <h6>{{ $message }}</h6>
                         @enderror
                         <input class="btn btn-primary my-2" type="submit" name="login" value="Login">
+                        <script src="{{asset(js/login/login.js)}}"></script>
                     </form>
                 </div>
 </Section>
