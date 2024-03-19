@@ -2,40 +2,45 @@
 
 @section('content')
     <div class="container">
-        <h4>Actualizar</h4>
+        <h4>Actualizar Producto</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{ route('room.update', $rooms->id_number) }}" method="post">
+                <form id="updateProductForm" action="{{ route('product.update', $product->id_producto) }}" method="post">
                     @csrf
                     @method('PUT')
 
+/* The code snippet you provided is creating a form input field for the "Nombre del Producto" (Product
+Name) in a product update form. Here's a breakdown of what each part of the code is doing: */
                     <div class="form-group">
-                        <label for="id_number">Numero Habitacion</label>
-                        <input type="number" class="form-control" name="id_number" placeholder="" required value="{{ $rooms->id_number }}">
+                        <label for="nombre_producto">Nombre del Producto</label>
+                        <input type="text" class="form-control" name="nombre_producto" placeholder="" required value="{{ $product->nombre_producto }}">
                     </div>
 
+/* The code snippet you provided is creating a textarea input field for the "Descripción" (Description)
+of a product in a product update form. Here's a breakdown of what each part of the code is doing: */
                     <div class="form-group">
-                        <label for="id_type">Tipo de habitacion</label>
-                        <select class="form-control" name="id_type" required>
-                            <option value="">Seleccionar tipo de habitación</option>
-                            <option value="1" {{ $rooms->id_type == '1' ? 'selected' : '' }}>Habitación Individual</option>
-                            <option value="2" {{ $rooms->id_type == '2' ? 'selected' : '' }}>Habitación Doble</option>
-                            <option value="suite" {{ $rooms->id_type == 'suite' ? 'selected' : '' }}>Suite</option>
-                        </select>
+                        <label for="description">Descripción</label>
+                        <textarea class="form-control" name="description" rows="3" required>{{ $product->description }}</textarea>
                     </div>
 
+/* This code snippet is creating a form input field for the "Cantidad" (Quantity) of a product in a
+product update form. Here's a breakdown of what each part of the code is doing: */
                     <div class="form-group">
-                        <label for="state">Estado</label>
-                        <input type="state" class="form-control" name="state" placeholder="" required value="{{ $rooms->state }}">
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number" class="form-control" name="cantidad" placeholder="" required value="{{ $product->cantidad }}">
                     </div>
 
+/* This code snippet is creating a form input field for the "Precio" (Price) of a product in a product
+update form. Here's a breakdown of what each part of the code is doing: */
                     <div class="form-group">
-                        <label for="capacity">Capacidad</label>
-                        <input type="number" class="form-control" name="capacity" placeholder="" required value="{{ $rooms->capacity }}">
+                        <label for="price">Precio</label>
+                        <input type="number" class="form-control" name="price" placeholder="" required value="{{ $product->price }}">
                     </div>
 
+/* This part of the code is creating buttons within a form for updating a product. Here's a breakdown
+of what each element is doing: */
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Actualizar">
+                        <input type="button" class="btn btn-primary" value="Actualizar" onclick="confirmUpdate()">
                         <input type="reset" class="btn btn-danger" value="Cancelar">
                         <a href="javascript:history.back()" class='btn btn-dark'>Volver</a>
                     </div>
@@ -43,4 +48,22 @@
             </div>
         </div>
     </div>
+
+/* The script you provided is a JavaScript function named `confirmUpdate()` that is triggered when the
+user clicks the "Actualizar" button in the form. Here's a breakdown of what the function does: */
+    <script>
+        function confirmUpdate() {
+            var form = document.getElementById('updateProductForm');
+            var nombre_producto = form.nombre_producto.value;
+            var description = form.description.value;
+            var cantidad = form.cantidad.value;
+            var price = form.price.value;
+
+            var confirmation = confirm("¿Está seguro de actualizar el siguiente producto?\n\nNombre del Producto: " + nombre_producto + "\nDescripción: " + description + "\nCantidad: " + cantidad + "\nPrecio: " + price);
+
+            if (confirmation) {
+                form.submit();
+            }
+        }
+    </script>
 @endsection
