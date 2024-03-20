@@ -37,7 +37,7 @@
                         <input type="text" class="form-control" name="phone" value="{{$user->phone}}">
                     </div>
                     <div class="form-group">
-                            <input type="password" class="form-control" name="phone" value="{{$user->password}}" hidden>
+                            <input type="password" class="form-control" name="password" value="{{$user->password}}" hidden>
 
 
                     </div>
