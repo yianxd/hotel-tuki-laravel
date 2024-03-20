@@ -1,11 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="modal-delete-{{$booking->id_booking}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form action="{{route('booking.destroy',$booking->id_booking)}}" method="post">
+
+    <div class="modal-dialog" role="document">
+        <form action="{{route('customer.destroy',$booking->id_booking)}}" method="post">
             @csrf
             @method('DELETE')
-
-
             <div class="modal-content">
                 <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
@@ -24,3 +22,6 @@
 
     </div>
 </div>
+
+
+

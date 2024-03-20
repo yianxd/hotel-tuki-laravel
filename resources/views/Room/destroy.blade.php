@@ -1,3 +1,5 @@
+
+
 <div class="modal fade" id="modal-delete-{{$rooms->id_number}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{route('room.destroy',$rooms->id_number)}}" method="post">
@@ -26,4 +28,5 @@
 
     </div>
 </div>
+
 

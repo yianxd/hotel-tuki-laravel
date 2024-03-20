@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Crear Reserva</h1>
-    <form class="form-control" action="{{ route('booking.store') }}" method="POST" >
+    <form class="form-control" action="{{ route('.store') }}" method="POST" >
         @csrf
         <div class="col-md-4">
             <label class="form-label" for="document">Documento</label>

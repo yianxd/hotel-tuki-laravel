@@ -47,13 +47,13 @@ class Handler extends ExceptionHandler
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function render($request, Throwable $e)
-    // {
-    //     if($this->isHttpException($e)){
+    //  public function render($request, Throwable $e)
+    //  {
+    //      if($this->isHttpException($e)){
+    //          return response()->view('Customer.index');
+    // //     } else{
     //         return response()->view('Customer.index');
-    //     } else{
-    //         return response()->view('Customer.index');
-    //     }
-    // }
+    //      }
+    //  }
 
 }

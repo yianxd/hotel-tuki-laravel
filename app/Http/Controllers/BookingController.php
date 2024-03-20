@@ -20,8 +20,7 @@ class BookingController extends Controller
         $texto=trim($request->get('texto'));
         $booking=DB::table('bookings')
                     ->select('id_booking','id_number','document','amount_people','date_start','date_end','price')
-                    ->where('id','LIKE','%'.$texto.'%')
-                    ->orWhere('id_number','LIKE','%'.$texto.'%')
+                    ->where('id_number','LIKE','%'.$texto.'%')
                     ->orWhere('document','LIKE'.'%'.$texto.'%')
                     ->orderBy('id_booking','asc')
                     ->paginate(10);

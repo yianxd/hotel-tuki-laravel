@@ -24,7 +24,7 @@ class CustomerController extends Controller
         $booking=DB::table('bookings')
                     ->select('id_booking','id_number','document','amount_people','date_start','date_end','price')
                     ->get();
-        return view('customer.index',compact('booking'));
+        return view('Customer.index',compact('booking'));
 
     }
 
@@ -99,8 +99,11 @@ class CustomerController extends Controller
  * deleting the booking with the given ``.
  */
     public function destroy($id_booking){
+
         $booking = Booking::findOnFail($id_booking);
+
         $booking->delete();
-        return redirect()->route('customer.index');
+
+        return redirect()->route('Customer.index');
     }
 }

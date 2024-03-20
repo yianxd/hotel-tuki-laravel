@@ -35,10 +35,10 @@
                     @if ( auth()->user()->document==$booking->document)
                             <tr>
                                 <td>
-                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ asset($booking->id_booking)}}">
+                                    <button type="button" class="btn btn-danger btn-sm" role="dialog" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$booking->id_booking}}">
                                         Cancelar Reserva
                                     </button>|
-                                    @include('Booking.destroy')
+                                    @include('Customer.destroy')
                                     <div>
                                         <a href="{{ route('booking.edit',$booking->id_booking) }}" class="btn btn-warning btn-sm">Actualizar reserva</a>
                                     </div>
@@ -56,16 +56,19 @@
                     @endif
                 </tbody>
             </table>
+
         </div>
 
     </div>
     </div>
     </div>
-    @if (Session::has('succes'))
+    @if (Session::has('success'))
         <script src="{{asset('js/Customer/btn.js')}}">
 
         </script>
     @endif
+<!-- Button trigger modal -->
+
 </section>
 
 @endsection
