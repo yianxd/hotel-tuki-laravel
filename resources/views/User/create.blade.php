@@ -96,7 +96,7 @@
                     <div class="form-group">
                         <label for="password">Contraseña</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" name="password" value="{{ old('phone') }}" required>
+                            <input type="password" class="form-control" name="password" value="{{ old('password') }}" required>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility(this)">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
