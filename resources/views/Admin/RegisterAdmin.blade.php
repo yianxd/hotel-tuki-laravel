@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-xl-12">
 
-                    <form class="needs-validation" action="{{route('user.store')}}" method="POST" novalidate>
+                    <form class="needs-validation" action="{{route('register.admin.store')}}" method="POST" novalidate>
                         @csrf
                         <div class="form-group">
                             <label for="typeDoc">Tipo de Documento</label>
@@ -141,7 +141,7 @@
       form.classList.add('was-validated')
     }, false)
   })
-})()  
+})()
 </script>
 
 

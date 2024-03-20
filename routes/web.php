@@ -63,6 +63,7 @@ Route::post('logout', [LogoutController::class,'store'])->name('logout');
 Route::post('login', [LoginController::class,'store'])->middleware('guest');
 
 Route::post('/register/admin', [RegisterAdminController::class, 'create'])->name('register.admin.create');
+Route::post('/register/admin/store', [RegisterAdminController::class, 'store'])->name('register.admin.store');
 Route::get('/home', [HomeController::class,'index'])->name('home.index')->middleware('auth');
 
 Route::get('/soport',function(){return view('soport');})->name('soport')->middleware('auth');
