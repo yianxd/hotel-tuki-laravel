@@ -12,7 +12,7 @@
 </head>
 <body>
     @auth
-        <p>Bienvenido{{ auth()->user()->name }}</p>
+        <p>Bienvenido {{ auth()->user()->name }}</p>
             @if (auth()->user()->id_rol==1)
                     <p>Instructor</p>
                     <nav class="navbar navbar-expand-lg bg-body-tertiary" >

@@ -56,6 +56,13 @@ class UserController extends Controller
         //        Rules\Password::min(8)
         //    ],
         //]);
+        $request->validate([
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+        ], [
+            'password_confirmation.same' => 'Las contraseñas no coinciden.',
+        ]);
+
 
         $user =new User;
         $user->typeDoc=$request->input('typeDoc');
