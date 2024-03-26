@@ -1,6 +1,6 @@
-<div class="modal fade" id="modal-delete-{{$product->id_producto}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-delete-{{$products->id_producto}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{route('product.destroy', $product->id_producto)}}" method="post">
+        <form action="{{route('products.destroy', $products->id_producto)}}" method="post">
             @csrf
             @method('DELETE')
             <div class="modal-content">
@@ -10,11 +10,11 @@
                 </div>
                 <div class="modal-body">
                     ¿Está seguro de eliminar el producto? <br>
-                    Código: {{$product->id_producto}} <br>
-                    Nombre del producto: {{$product->nombre_producto}} <br>
-                    Descripción: {{$product->description}} <br>
-                    Cantidad: {{$product->cantidad}} <br>
-                    Precio: {{$product->price}} <br>
+                    Código: {{$products->id_producto}} <br>
+                    Nombre del producto: {{$products->nombre_producto}} <br>
+                    Descripción: {{$products->description}} <br>
+                    Cantidad: {{$products->cantidad}} <br>
+                    Precio: {{$products->price}} <br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cerrar</button>

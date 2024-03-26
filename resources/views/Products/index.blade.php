@@ -6,7 +6,7 @@
     <h4>Productos</h4>
     <div class="row">
         <div class="col-xl-12">
-            <form action="{{ route('product.index') }}" method="post">
+            <form action="{{ route('products.index') }}" method="post">
                 <div class="form-row">
                     <div class="col-sm-3 my-1">
                         <input type="text" class="form-control" name="texto" value="{{$texto}}">
@@ -15,7 +15,7 @@
                           <input type="submit" class="btn btn-primary" value="Buscar">
                     </div>
                     <div class="col-auto my-1">
-                        <a href="{{route('product.create')}}" class="btn btn-success">Nuevo registro</a>
+                        <a href="{{route('products.create')}}" class="btn btn-success">Nuevo registro</a>
                     </div>
                 </div>
             </form>
@@ -38,21 +38,21 @@
                                 <td colspan="5">No hay resultados</td>
                             </tr>
                         @else
-                            @foreach ($products as $product)
+                            @foreach ($products as $products)
                             <tr>
-                                <td>{{$product->id_producto }}</td>
-                                <td>{{$product->nombre_producto}}</td>
-                                <td>{{$product->description}}</td>
-                                <td>{{$product->cantidad}}</td>
-                                <td>{{$product->price}}</td>
+                                <td>{{$products->id_producto }}</td>
+                                <td>{{$products->nombre_producto}}</td>
+                                <td>{{$products->description}}</td>
+                                <td>{{$products->cantidad}}</td>
+                                <td>{{$products->price}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$product->id_producto}}">
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$products->id_producto}}">
                                         Eliminar
                                     </button> |
-                                    <a href="{{route('product.edit',$product->id_producto)}}" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="{{route('products.edit',$products->id_producto)}}" class="btn btn-warning btn-sm">Editar</a>
                                 </td>
                             </tr>
-                            @include('product.destroy')
+                            @include('products.destroy')
                             @endforeach
                         @endif
                     </tbody>

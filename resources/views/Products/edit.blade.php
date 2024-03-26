@@ -5,32 +5,32 @@
         <h4>Actualizar Producto</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form id="updateProductForm" action="{{ route('product.update', $product->id_producto) }}" method="post">
+                <form id="updateProductForm" action="{{ route('products.update', $products->id_producto) }}" method="post">
                     @csrf
                     @method('PUT')
 
 
                     <div class="form-group">
                         <label for="nombre_producto">Nombre del Producto</label>
-                        <input type="text" class="form-control" name="nombre_producto" placeholder="" required value="{{ $product->nombre_producto }}">
+                        <input type="text" class="form-control" name="nombre_producto" placeholder="" required value="{{ $products->nombre_producto }}">
                     </div>
 
 
                     <div class="form-group">
                         <label for="description">Descripción</label>
-                        <textarea class="form-control" name="description" rows="3" required>{{ $product->description }}</textarea>
+                        <textarea class="form-control" name="description" rows="3" required>{{ $products->description }}</textarea>
                     </div>
 
 
                     <div class="form-group">
                         <label for="cantidad">Cantidad</label>
-                        <input type="number" class="form-control" name="cantidad" placeholder="" required value="{{ $product->cantidad }}">
+                        <input type="number" class="form-control" name="cantidad" placeholder="" required value="{{ $products->cantidad }}">
                     </div>
 
 
                     <div class="form-group">
                         <label for="price">Precio</label>
-                        <input type="number" class="form-control" name="price" placeholder="" required value="{{ $product->price }}">
+                        <input type="number" class="form-control" name="price" placeholder="" required value="{{ $products->price }}">
                     </div>
 
 

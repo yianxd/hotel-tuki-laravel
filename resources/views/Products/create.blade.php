@@ -5,7 +5,7 @@
         <h4>Registro De Productos</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form id="productForm" action="{{ route('product.store') }}" method="post">
+                <form id="productForm" action="{{ route('products.store') }}" method="post">
                     @csrf
 
                     <div class="form-group">
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="button" class="btn btn-primary" value="Registro" onclick="confirmSubmit()">
+                        <input type="submit" class="btn btn-primary" value="Registro" onclick="return confirmSubmit();">
                         <input type="reset" class="btn btn-danger" value="Cancelar">
                         <a href="javascript:history.back()" class='btn btn-dark'>Volver</a>
                     </div>
@@ -51,19 +51,21 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function confirmSubmit() {
-            var form = document.getElementById('productForm');
-            var nombre_producto = form.nombre_producto.value;
-            var description = form.description.value;
-            var cantidad = form.cantidad.value;
-            var price = form.price.value;
+            var nombre_producto = $("input[name='nombre_producto']").val();
+            var description = $("textarea[name='description']").val();
+            var cantidad = $("input[name='cantidad']").val();
+            var price = $("input[name='price']").val();
 
-            var confirmation = confirm("¿Está seguro de agregar el siguiente producto?\n\nNombre del Producto: " + nombre_producto + "\nDescripción: " + description + "\nCantidad: " + cantidad + "\nPrecio: " + price);
+            var confirmationMessage = "¿Está seguro de agregar el siguiente producto?\n\n" +
+                                    "Nombre del Producto: " + nombre_producto + "\n" +
+                                    "Descripción: " + description + "\n" +
+                                    "Cantidad: " + cantidad + "\n" +
+                                    "Precio: " + price + "\n";
 
-            if (confirmation) {
-                form.submit();
-            }
+            return confirm(confirmationMessage);
         }
     </script>
 @endsection

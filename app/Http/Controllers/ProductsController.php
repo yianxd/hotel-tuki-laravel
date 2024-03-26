@@ -57,15 +57,12 @@ class ProductsController extends Controller
     {
         // Validar los datos de la solicitud para almacenar un nuevo producto
         $request->validate([
-            'id_producto' => 'required|numeric|min:100|max:999',
             'nombre_producto' => 'required|string|min:1',
             'description' => 'required|string|min:1',
             'cantidad' => 'required|numeric',
             'price' => 'required|numeric',
         ],
         [
-            'id_producto.min' => 'El ID de producto debe tener al menos 1 dígito.',
-            'id_producto.max' => 'El ID de producto no puede tener más de 3 dígitos.',
             'nombre_producto.required' => 'El nombre del producto es obligatorio.',
             'description.required' => 'La descripción del producto es obligatoria.',
             'cantidad.required' => 'La cantidad del producto es obligatoria.',
@@ -96,15 +93,15 @@ class ProductsController extends Controller
     public function show($id_producto)
     {
         // Buscar el producto con el ID proporcionado
-        $product = Products::findOrFail($id_producto);
+        $products = Products::findOrFail($id_producto);
 
         // Si no se encuentra el producto, mostrar un mensaje de error
-        if (!$product) {
+        if (!$products) {
             dd("No se encontró ningún producto con el ID proporcionado.");
         }
 
         // Devolver la vista 'show' con el producto encontrado
-        return view('products.show', compact('product'));
+        return view('products.show', compact('products'));
     }
 
     /**
@@ -116,15 +113,15 @@ class ProductsController extends Controller
     public function edit($id_producto)
     {
         // Buscar el producto con el ID proporcionado para editarlo
-        $product = Products::findOrFail($id_producto);
+        $products = Products::findOrFail($id_producto);
 
         // Si no se encuentra el producto, mostrar un mensaje de error
-        if (!$product) {
+        if (!$products) {
             dd("No se encontró ningún producto con el ID proporcionado.");
         }
 
         // Devolver la vista 'edit' con el producto encontrado
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('products'));
     }
 
     /**
@@ -137,15 +134,14 @@ class ProductsController extends Controller
     public function update(Request $request, $id_producto)
     {
         // Buscar el producto con el ID proporcionado para actualizarlo
-        $product = Products::findOrFail($id_producto);
+        $products = Products::findOrFail($id_producto);
 
         // Actualizar los datos del producto con los datos de la solicitud
-        $product->id_producto = $request->input('id_producto');
-        $product->nombre_producto = $request->input('nombre_producto');
-        $product->description = $request->input('description');
-        $product->cantidad = $request->input('cantidad');
-        $product->price = $request->input('price');
-        $product->save();
+        $products->nombre_producto = $request->input('nombre_producto');
+        $products->description = $request->input('description');
+        $products->cantidad = $request->input('cantidad');
+        $products->price = $request->input('price');
+        $products->save();
 
         // Redirigir a la página de índice de productos
         return redirect()->route('products.index');
