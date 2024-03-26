@@ -35,12 +35,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($inventories) <= 0)
+                        @if (count($inventory) <= 0)
                             <tr>
                                 <td colspan="6">No hay resultados</td>
                             </tr>
                         @else
-                            @foreach ($inventories as $inventory)
+                            @foreach ($inventory as $inventory)
                             <tr>
                                 <td>{{$inventory->id_inventario }}</td>
                                 <td>{{$inventory->id_producto}}</td>
