@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ServiceController;
@@ -35,10 +34,8 @@ Route::get('/',function(){return view('welcome');});
 Route::resource('/user', UserController::class);
 
 /*Modulo reserva */
-
-Route::resource('/customer',CustomerController::class)->middleware('auth');
 Route::resource('/booking', BookingController::class)->middleware('auth');
-
+Route::get('/change',[BookingController::class,'change'])->name('changeRoom');
 
 /*Modulo Admin */
 
@@ -71,6 +68,7 @@ Route::get('/soport',function(){return view('soport');})->name('soport')->middle
 /*Modulo factura */
 Route::get('/bill', [BillController::class, 'index'])->name('bill.index')->middleware('auth');
 Route::get('/bill/create', [BillController::class, 'create'])->name('bill.create')->middleware('auth');
+Route::get('/bill/show',[BillController::class,'show'])->name('bill.show');
 
 
 

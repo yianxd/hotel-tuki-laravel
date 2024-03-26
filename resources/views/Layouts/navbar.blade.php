@@ -26,10 +26,10 @@
                     </nav>
             @elseif (auth()->user()->id_rol==2)
                 <p>Recepcionista</p>
-                    <nav>
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary">
                         <menu>
-                            <a href="#">Gestionar Reserva</a>
-                            <a href="{{ route('soport') }}">Soporte</a>
+                            <a class="navbar-brand" href="{{ route('booking.index')}}">Gestionar Reserva</a>
+                            <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>
             @elseif (auth()->user()->id_rol==3)
@@ -53,8 +53,8 @@
 
                     <nav class="navbar navbar-expand-lg bg-body-tertiary" >
                         <menu>
-                            <a class="navbar-brand" href="{{ route('customer.create')}}">Hacer Una Reserva</a>
-                            <a class="navbar-brand" href="{{ route('customer.index')}}">Consultar Reservas</a>
+                            <a class="navbar-brand" href="{{ route('booking.create')}}">Hacer Una Reserva</a>
+                            <a class="navbar-brand" href="{{ route('booking.index')}}">Consultar Reservas</a>
                             <a class="navbar-brand" href="{{ route('soport') }}">Soporte</a>
                         </menu>
                     </nav>

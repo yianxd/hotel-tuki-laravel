@@ -1,19 +1,26 @@
-@extends('layouts.navbar')
 
-@section('title', 'Factura')
+<div class="table-responsive">
+    <h1 class="text-center py-3">Facturas</h1>
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Opciones</th>
+                <th>Numero de factura</th>
+                <th>Documento</th>
+                <th>fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($bill as $bill)
+                <tr>
+                    <td>{{$bill->id_bill}}</td>
+                    <td>{{$bill->id_booking}}</td>
+                    <td>{{$bill->document}}</td>
+                    <td>{{$bill->date}}</td>
+                </tr>
 
-@section('content')
 
-@if ($bill)
+            @endforeach
+        </tbody>
+</table>
 
-<h1>Factura Hotel Tuki</h1>
-<p>Numero de factura: {{ $bill->id_bill }}</p>
-<p>Numero de reserva: {{ $bill->id_booking }}</p>
-<p>Numero de documento: {{ $bill->document }}</p>
-<p>Fecha: {{ $bill->date }}</p>
-<p>total: {{ $bill->total }}</p>
-
-@endif
-
-
-@endsection

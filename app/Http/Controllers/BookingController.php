@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Room;
 
 class BookingController extends Controller
 {
@@ -20,11 +21,10 @@ class BookingController extends Controller
         $texto=trim($request->get('texto'));
         $booking=DB::table('bookings')
                     ->select('id_booking','id_number','document','amount_people','date_start','date_end','price')
-                    ->where('id','LIKE','%'.$texto.'%')
+                    ->where('document','LIKE','%'.$texto.'%')
                     ->orWhere('id_number','LIKE','%'.$texto.'%')
-                    ->orWhere('document','LIKE'.'%'.$texto.'%')
                     ->orderBy('id_booking','asc')
-                    ->paginate(10);
+                    ->paginate(20);
         return view('booking.index',compact('booking','texto'));
     }
 
@@ -36,7 +36,11 @@ class BookingController extends Controller
     public function create()
     {
         //
-        return view('Booking.create');
+        $room=DB::table('rooms')
+        ->select('id_number','id_type','capacity','state')
+        ->where('state','=',1)
+        ->get();
+        return view('booking.create',compact('room'));
     }
 
     /**
@@ -45,9 +49,23 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illumiwwnate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        //$fecha = Carbon::now()->format('Ymd');
+        $request->validate([
+            'amount_people'=>'required|numeric|min:1|max:5',
+            'date_start'=>'required|date',
+            'date_end'=>'required|date'
+        ],
+        [
+            'amount_people.required'=>'Llene este campo porfa',
+            'amount_people.max'=>'Maximo 5 personas por habitacion',
+            'amount_people.min'=>'Minimo 1 personas por habitacion',
+            'date_start.requiered'=>'Este campo es obligatorio',
+            'date_start.requiered'=>'Este campo es obligatorio',
+            'date_end.requiered'=>'Este campo es obligatorio',
+        ]
+    );
+
         $booking =new Booking;
         $booking->document=$request->input('document');
         $booking->id_number=$request->input('id_number');
@@ -55,8 +73,16 @@ class BookingController extends Controller
         $booking->date_start=$request->input('date_start');
         $booking->date_end=$request->input('date_end');
         $booking->price=$request->input('price');
-        $booking->save();
-        return redirect()->route('booking.index')->with('succes','Reserva creada:3');
+
+        //if ($booking->date_start<$fecha){
+            //xreturn redirect()->route('customer.create')->with('La fecha no puede menor a la actual');
+        //}else{
+            $booking->save();
+            return redirect()->route('booking.index')->with('success','success');
+        //}
+
+
+
     }
 
     /**
@@ -81,7 +107,8 @@ class BookingController extends Controller
     {
         //
         $booking=Booking::findOrFail($id_booking);
-        return view('booking.edit',compact('booking'));
+        $rooms = Room::select('id_number', 'id_type', 'capacity', 'state','price')->get();
+        return view('Booking.edit',compact('booking','rooms'));
     }
 
     /**
@@ -96,16 +123,11 @@ class BookingController extends Controller
         //
 
         $request->validate([
-            'number_rooms'=>'required|numeric|min:1|max:5',
-            'amount_people'=>'requiered|numeric|min:1|max:5',
+            'amount_people'=>'required|numeric|min:1|max:5',
             'date_start'=>'required|date',
             'date_end'=>'required|date'
         ],
         [
-            'number_room.required'=>'Campo Obligatorio',
-            'number_room.numeric'=>'Unicamente numeros',
-            'number_room.min'=>'Minimo una habitacion',
-            'number_room.max'=>'Maximo 5 habitaciones',
             'amount_people.required'=>'Campo Obligatorio',
             'amount_people.numeric'=>'Unicamente numeros',
             'amount_people.min'=>'Minimo una persona',
@@ -120,12 +142,22 @@ class BookingController extends Controller
     );
 
         $booking =Booking::findOrFail($id_booking);
+
         $booking->id_number=$request->input('id_number');
         $booking->amount_people=$request->input('amount_people');
         $booking->date_start=$request->input('date_start');
         $booking->date_end=$request->input('date_end');
         $booking->save();
-        return redirect()->route('booking.index')->with('succes','Reserva creada:#');
+        return redirect()->route('booking.index');
+    }
+
+
+    public function changeRoom($id_booking){
+
+        $booking =  Booking::finOrFail($id_booking);
+        $booking->id_number->input('id_number');
+        $booking->save();
+
     }
 
     /**
@@ -139,6 +171,7 @@ class BookingController extends Controller
         //
 
         $booking = Booking::findOrFail($id_booking);
+    
         $booking->delete();
         return redirect()->route('booking.index');
     }
