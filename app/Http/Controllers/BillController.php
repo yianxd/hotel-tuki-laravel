@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bill;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class BillController extends Controller
 {
@@ -17,11 +18,10 @@ class BillController extends Controller
         return view('bill.index',compact('bill'));
     }
 
-    public function show($id_bill){
+    public function show($document){
 
-        $bills = Bill::all();
-        $bill = $bills->find($id_bill);
-        $pdf = Pdf::loadView('bill.show',$bill);
+        $bill=Bill::select('id_booking','id_booking','document','date')->where('document','='.$document)->get();
+        $pdf = Pdf::loadView('bill.show', compact('bill'));
         return $pdf->stream();
     }
 }
