@@ -155,8 +155,10 @@ class BookingController extends Controller
     public function changeRoom($id_booking){
 
         $booking =  Booking::finOrFail($id_booking);
-        $booking->id_number->input('id_number');
+        $booking->id_number->input('room');
         $booking->save();
+
+        return  redirect()->route('booking.edit');
 
     }
 
@@ -171,7 +173,7 @@ class BookingController extends Controller
         //
 
         $booking = Booking::findOrFail($id_booking);
-    
+
         $booking->delete();
         return redirect()->route('booking.index');
     }

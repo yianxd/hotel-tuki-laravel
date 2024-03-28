@@ -5,10 +5,7 @@
             *
             *     -->
             <dialog id="modal">
-                <form action="{{route('changeRoom',$booking->id_booking)}}"></form>
                 <h1>Habitaciones disponibles</h1>
-                    @csrf
-                    @method('PUT')
                 <div class="col-lx-12">
                     <table class="table">
                     <div>
@@ -25,7 +22,7 @@
                                 @foreach ($rooms as $room)
                                 <tr>
                                     <td>
-                                        <input type="radio" name="id_number" @if ($booking->id_number==$room->id_number)
+                                        <input type="radio" name="room" @if ($booking->id_number==$room->id_number)
                                             @checked(true)
                                         @endif>
                                     </td>
@@ -52,11 +49,9 @@
                     </div>
                 </div>
                 </table>
-                <button type="button" class="btn btn-success" id="btn-actualizar">Cambiar Habitacion</button>
+                <button type="button" class="btn btn-success" id="Actualizar">Cambiar Habitacion</button>
                 <button type="button" id="btn-cerrar" class="btn btn-danger">Cerrar</button>
-
             </dialog>
-            </form>
             <!--
             *
             *

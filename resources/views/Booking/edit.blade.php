@@ -29,10 +29,10 @@
                         <tr>
                             @if($room->id_number==$booking->id_number)
                             <td>
-                                <input name="id_number" value=102 hidden>
+                                <input id="id_number"  name="id_number" hidden>
                             </td>
-                            <td>{{$room->id_number}}</td>
-                            <td id="type_room">
+                            <td id="numero-habitacion">{{$room->id_number}}</td>
+                            <td id="tipo-habitacion">
                                 @if ($room->id_type==1)
                                     simple
                                 @elseif ($room->id_type==2)
@@ -44,7 +44,7 @@
                                 @endif
 
                             </td >
-                            <td id="capacity">{{$room->capacity}} persona/s</td>
+                            <td id="capacidad-habitacion">{{$room->capacity}} persona/s</td>
                             @endif
                         </tr>
                         @endforeach
@@ -67,7 +67,9 @@
         <input type="date" class="form-control " name="date_start" value="{{$booking->date_start}}">
         <label class="form-label" for="date_end">Fecha final</label>
         <input type="date" class="form-control " name="date_end" value="{{$booking->date_end}}">
-        <input type="numeric" name="price" value="1000" hidden>
+        <label for="price" class="form-label">Total a pagar</label>
+        <label type="text" class="form-control">{{$booking->price}}</label>
+
 
 
     </form>
