@@ -96,15 +96,15 @@ class RoomController extends Controller
     public function edit($id_number)
     {
         // Buscar la habitación con el ID proporcionado para editarla
-        $rooms = Room::findOrFail($id_number);
+        $room = Room::findOrFail($id_number);
 
         // Si no se encuentra la habitación, mostrar un mensaje de error
-        if (!$rooms) {
+        if (!$room) {
             dd("No se encontró ninguna habitación con el ID proporcionado.");
         }
 
         // Devolver la vista 'edit' con la habitación encontrada
-        return view('room.edit', compact('rooms'));
+        return view('room.edit', compact('room'));
     }
 
     /**

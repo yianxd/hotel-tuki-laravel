@@ -97,11 +97,6 @@
                         <label for="password">Contraseña</label>
                         <div class="input-group">
                             <input type="password" class="form-control" name="password" value="{{ old('password') }}" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility(this)">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </button>
-                            </div>
                         </div>
                         <div class="valid-feedback">
                             Todo bien
@@ -113,14 +108,9 @@
 
 
                     <div class="form-group">
-                        <label for="password_confirm">Confirma contraseña</label>
+                        <label for="password_confirmation">Confirma contraseña</label>
                         <div class="input-group">
                             <input type="password" class="form-control" name="password_confirmation" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility(this)">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </button>
-                            </div>
                         </div>
                         <div class="valid-feedback">
                             Todo bien

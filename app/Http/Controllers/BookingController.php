@@ -107,7 +107,7 @@ class BookingController extends Controller
     {
         //
         $booking=Booking::findOrFail($id_booking);
-        $rooms = Room::select('id_number', 'id_type', 'capacity', 'state','price')->get();
+        $rooms = Room::select('id_number', 'id_type', 'capacity', 'state','price')->where('state','=',1)->get();
         return view('Booking.edit',compact('booking','rooms'));
     }
 

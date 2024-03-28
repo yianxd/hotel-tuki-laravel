@@ -38,18 +38,36 @@
                                 <td colspan="7">No hay resultados</td>
                             </tr>
                         @else
-                        @foreach ($rooms as $rooms)
+                        @foreach ($rooms as $room)
                         <tr>
-                            <td>{{$rooms->id_number }}</td>
-                            <td>{{$rooms->id_type}}</td>
-                            <td>{{$rooms->capacity}}</td>
-                            <td>{{$rooms->state}}</td>
-                            <td>{{$rooms->price}}</td>
+                            <td>{{$room->id_number }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$rooms->id_number}}">
+                                @if ($room->id_type==1)
+                                    Simple
+                                @elseif ($room->id_type==2)
+                                    Doble
+                                @elseif($room->id_type==3)
+                                    suit
+                                @endif
+                                </td>
+                            <td>{{$room->capacity}}</td>
+                            <td>
+                                @if ($room->state==1)
+                                    Disponible
+
+                                @elseif ($room->state==0)
+                                    Ocupada
+                                @elseif ($room->state==2)
+                                    En mantenimiento
+                                @endif
+
+                                </td>
+                            <td>{{$room->price}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$room->id_number}}">
                                     Eliminar
                                 </button> |
-                                <a href="{{route('room.edit',$rooms->id_number)}} " class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{{route('room.edit',$room->id_number)}} " class="btn btn-warning btn-sm">Editar</a>
                             </td>
                         </tr>
                         @include('room.destroy')

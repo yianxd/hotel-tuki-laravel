@@ -5,22 +5,22 @@
         <h4>Actualizar</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="{{ route('room.update', $rooms->id_number) }}" method="post">
+                <form action="{{ route('room.update', $room->id_number) }}" method="post">
                     @csrf
                     @method('PUT')
 
                     <div class="form-group">
                         <label for="id_number">Numero Habitacion</label>
-                        <input type="number" class="form-control" name="id_number" placeholder="" required value="{{ $rooms->id_number }}">
+                        <input type="number" class="form-control" name="id_number" placeholder="" required value="{{ $room->id_number }}">
                     </div>
 
                     <div class="form-group">
                         <label for="id_type">Tipo de habitacion</label>
                         <select class="form-control" name="id_type" required>
                             <option value="">Seleccionar tipo de habitación</option>
-                            <option value="1" {{ $rooms->id_type == '1' ? 'selected' : '' }}>Habitación Individual</option>
-                            <option value="2" {{ $rooms->id_type == '2' ? 'selected' : '' }}>Habitación Doble</option>
-                            <option value="suite" {{ $rooms->id_type == 'suite' ? 'selected' : '' }}>Suite</option>
+                            <option value="1" {{ $room->id_type == '1' ? 'selected' : '' }}>Habitación Individual</option>
+                            <option value="2" {{ $room->id_type == '2' ? 'selected' : '' }}>Habitación Doble</option>
+                            <option value="suite" {{ $room->id_type == 'suite' ? 'selected' : '' }}>Suite</option>
                         </select>
                     </div>
 
@@ -28,9 +28,9 @@
                         <label for="state">Estado</label>
                         <select class="form-control" name="state" required>
                             <option value="">Seleccionar estado</option>
-                            <option value="1" {{ $rooms->state == 'Disponible' ? 'selected' : '' }}>Disponible</option>
-                            <option value="2" {{ $rooms->state == 'Mantenimiento' ? 'selected' : '' }}>Mantenimiento</option>
-                            <option value="0" {{ $rooms->state == 'No Disponible' ? 'selected' : '' }}>No Disponible</option>
+                            <option value="1" {{ $room->state == 'Disponible' ? 'selected' : '' }}>Disponible</option>
+                            <option value="0" {{ $room->state == 'Mantenimiento' ? 'selected' : '' }}>Ocupada</option>
+                            <option value="2" {{ $room->state == 'No Disponible' ? 'selected' : '' }}>Mantenimiento</option>
                         </select>
                         @error('state')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -39,7 +39,7 @@
 
                     <div class="form-group">
                         <label for="capacity">Capacidad</label>
-                        <input type="number" class="form-control" name="capacity" placeholder="" required value="{{ $rooms->capacity }}">
+                        <input type="number" class="form-control" name="capacity" placeholder="" required value="{{ $room->capacity }}">
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Actualizar" onclick="return confirmSubmit();">
